@@ -251,6 +251,7 @@ with product_col:
 with play_col:
     chosen_plays = st.multiselect(
         "Play", options=list(ab_plays.PLAYS),
+        default=["Montney (Alberta)", "Deep Basin"],
         help=(
             "Wells binned by bottom-hole location. Approximate — plays "
             "overlap in the subsurface and the Duvernay cannot be "
@@ -262,6 +263,7 @@ with colour_col:
     colour_by = st.selectbox(
         "Colour by",
         ["Output", "Operator", "Operator + output", "Vintage", "Play"],
+        index=1,
         help=(
             "Output ranks wells against each other. Operator gives each "
             "of the top firms a hue. Operator + output keeps the hue "
@@ -314,13 +316,13 @@ with threshold_col:
     )
 
 with tail_col:
-    show_tail = st.checkbox("Small wells", value=True,
+    show_tail = st.checkbox("Small wells", value=False,
                             help="Sub-threshold wells, aggregated")
 with pipe_col:
-    show_pipelines = st.checkbox("Gas pipelines", value=False,
+    show_pipelines = st.checkbox("Gas pipelines", value=True,
                                  help="All AER operating gas pipelines")
 with ngtl_col:
-    show_ngtl = st.checkbox("NGTL", value=True)
+    show_ngtl = st.checkbox("NGTL", value=False)
 
 marker_col, size_col, scale_col, _spacer = st.columns([1.0, 1.1, 1.4, 3.0])
 
@@ -347,7 +349,7 @@ with size_col:
 with scale_col:
     marker_px = st.slider(
         "Marker size (px)", 1.0, 14.0,
-        4.0 if size_mode == "Uniform" else 8.0, 0.5,
+        3.0, 0.5,
     )
 
 # ---- filtering ---------------------------------------------

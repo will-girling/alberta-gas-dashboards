@@ -2737,7 +2737,7 @@ st.markdown(
 history_window = st.segmented_control(
     "History window",
     options=["24 hours", "3 days", "7 days", "All"],
-    default="24 hours",
+    default="All",
 )
 
 window_hours = {
@@ -3306,7 +3306,7 @@ def render_metric_explorer(
             bar_choice = st.selectbox(
                 "Bar interval",
                 options=["30 min (raw)", "2 hours", "6 hours", "1 day"],
-                index=3,
+                index=0,
                 key=f"explorer_freq_{key}",
                 help=(
                     "Finer intervals show intraday shape - nomination "
