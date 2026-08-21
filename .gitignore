@@ -30,3 +30,5 @@ __pycache__/
 .playwright_profile/
 .playwright_profile_csr/
 *.pdf
+~$*
+.~lock.*
