@@ -1,0 +1,29 @@
+# Streamlit reads the viewer's OS colour scheme unless a theme is
+# pinned here. That is the wrong default for these apps: both use dark
+# deck.gl basemaps and light-on-dark CSS for the legends and captions,
+# so a viewer whose machine prefers light mode gets pale grey text on
+# white and a dark map floating in it.
+#
+# Pinning the theme makes every viewer see the same thing regardless of
+# platform. This file lives in the repo, so Streamlit Community Cloud
+# applies it to both apps.
+
+[theme]
+base = "dark"
+
+# Matches the pipeline blue used across the NGTL map and the accent on
+# the interconnect markers.
+primaryColor = "#4da3ff"
+
+# Same values the custom CSS was written against.
+backgroundColor = "#0e1117"
+secondaryBackgroundColor = "#1a1f2b"
+textColor = "#e8edf5"
+
+[server]
+# The map layers are a few megabytes; the default 200 MB cap is ample,
+# but being explicit avoids a surprise if a layer grows.
+maxUploadSize = 200
+
+[browser]
+gatherUsageStats = false
