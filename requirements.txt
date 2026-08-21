@@ -10,6 +10,15 @@ numpy>=1.26
 pydeck>=0.9
 plotly>=5.20
 
+# The NGTL app fetches the Alberta boundary at runtime. Streamlit already
+# depends on requests, but declaring it means a future Streamlit release
+# dropping that dependency cannot break the app silently.
+requests>=2.31
+
 # Parquet, only used when the full well-month files are present. Harmless
 # on a deployment that runs from the precomputed CSVs.
 pyarrow>=15.0
+
+# NOT included on purpose: matplotlib. Only Styler.background_gradient
+# needed it, and that has been replaced with a plain shading function -
+# a large dependency for one colour ramp is a poor trade.

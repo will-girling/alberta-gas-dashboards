@@ -989,12 +989,29 @@ if have_parquet or have_deploy:
             "from_new_wells_pct": "From new wells %",
             "new_wells": "New wells",
         })
+        # Growth shading written directly rather than via
+        # Styler.background_gradient, which needs matplotlib - a large
+        # dependency to add for one colour ramp, and one that is not
+        # installed on Streamlit Cloud by default.
+        def growth_shade(value: float) -> str:
+            if value != value:                      # NaN
+                return ""
+            capped = max(-60.0, min(60.0, float(value))) / 60.0
+            if capped >= 0:
+                rgb = (0, 168, 120)
+            else:
+                rgb = (214, 69, 80)
+                capped = -capped
+            alpha = 0.10 + 0.45 * capped
+            return (f"background-color: rgba({rgb[0]},{rgb[1]},{rgb[2]},"
+                    f"{alpha:.2f});")
+
         st.dataframe(
             show.style.format({
                 "MMcf/d": "{:,.0f}", "Share %": "{:.1f}",
                 "y/y %": "{:+.0f}", "From new wells %": "{:.0f}",
                 "New wells": "{:,.0f}",
-            }).background_gradient(subset=["y/y %"], cmap="RdYlGn"),
+            }).map(growth_shade, subset=["y/y %"]),
             use_container_width=True, height=520,
         )
         st.caption(
