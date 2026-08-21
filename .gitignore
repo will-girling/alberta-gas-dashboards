@@ -1,0 +1,32 @@
+# Raw downloads and intermediates. Everything here is reproducible by
+# running the download and prepare scripts, and most of it is far too
+# large for a repository.
+petrinex_raw/
+gdsr/
+csr_raw/
+outages_raw/
+westcoast_raw/
+ST_37_Wells.gdb/
+Pipelines_SHP/
+Pipeline_Installations_SHP/
+*.gdb/
+
+# Well-month parquets: 128 MB and 113 MB, over GitHub's file limit.
+# processed/deploy/ carries the precomputed outputs instead.
+processed/ab_well_production.parquet
+processed/ab_well_production_located.parquet
+processed/major_operating_gas_pipelines.geojson
+processed/ngtl_operating_pipelines.geojson
+processed/bc_transmission_pipelines.geojson
+processed/ngtl_meter_stations.geojson
+
+# Logs and local artifacts
+*.log
+refresh_log.json
+*_download_log.json
+node_modules/
+__pycache__/
+.DS_Store
+.playwright_profile/
+.playwright_profile_csr/
+*.pdf

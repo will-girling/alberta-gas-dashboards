@@ -1,0 +1,10 @@
+{
+  "method": "GET",
+  "url": "https://f51561ras5.execute-api.us-west-2.amazonaws.com/production/csr/csv/?unit=MMcf&duration=1",
+  "headers": {
+    "referer": "https://my.tccustomerexpress.com/",
+    "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36"
+  },
+  "post_data": null,
+  "captured_at": "2026-08-08T15:07:30"
+}

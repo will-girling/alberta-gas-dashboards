@@ -1,0 +1,15 @@
+# Runtime dependencies for the two Streamlit apps.
+#
+# Deliberately minimal. The preparation scripts need more - pyogrio and
+# geopandas to read the AER geodatabase, requests and playwright to pull
+# the feeds - but none of that runs in the deployed app, which only
+# reads files that are already built.
+streamlit>=1.40
+pandas>=2.0
+numpy>=1.26
+pydeck>=0.9
+plotly>=5.20
+
+# Parquet, only used when the full well-month files are present. Harmless
+# on a deployment that runs from the precomputed CSVs.
+pyarrow>=15.0

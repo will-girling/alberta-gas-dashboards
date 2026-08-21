@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  NGTL refresh - runs every feed on one schedule.
+
+  Replaces com.willgirling.ngtl-csr.plist, which ran only the CSR
+  scraper. refresh_ngtl.py runs CSR, GDSR, the outage tracker, and the
+  three preparation steps in dependency order, so everything the
+  dashboard reads is rebuilt together and cannot drift apart.
+
+  Same cadence as the CSR agent it replaces: 00:05, 06:05, 12:05, 18:05,
+  plus once when the LaunchAgent is loaded or the user logs in. CSR
+  publishes half-hourly and the outage tracker once each evening around
+  21:30 MT, so four runs a day catches everything with room for the Mac
+  being asleep - each downloader has its own catch-up logic.
+
+  Install:
+    cp "/Users/willgirling/Desktop/NGTL Project/com.willgirling.ngtl-refresh.plist" ~/Library/LaunchAgents/
+    launchctl bootout gui/$(id -u)/com.willgirling.ngtl-csr 2>/dev/null
+    launchctl bootstrap gui/$(id -u) ~/Library/LaunchAgents/com.willgirling.ngtl-refresh.plist
+
+  Run on demand:
+    launchctl kickstart -k gui/$(id -u)/com.willgirling.ngtl-refresh
+
+  Logs:
+    refresh_stdout.log, refresh_stderr.log, refresh_log.json
+-->
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>com.willgirling.ngtl-refresh</string>
+
+    <key>ProgramArguments</key>
+    <array>
+        <string>/Users/willgirling/miniforge3/bin/python3</string>
+        <string>/Users/willgirling/Desktop/NGTL Project/refresh_ngtl.py</string>
+    </array>
+
+    <key>WorkingDirectory</key>
+    <string>/Users/willgirling/Desktop/NGTL Project</string>
+
+    <key>StartCalendarInterval</key>
+    <array>
+        <dict><key>Hour</key><integer>0</integer><key>Minute</key><integer>5</integer></dict>
+        <dict><key>Hour</key><integer>6</integer><key>Minute</key><integer>5</integer></dict>
+        <dict><key>Hour</key><integer>12</integer><key>Minute</key><integer>5</integer></dict>
+        <dict><key>Hour</key><integer>18</integer><key>Minute</key><integer>5</integer></dict>
+    </array>
+
+    <key>RunAtLoad</key>
+    <true/>
+
+    <key>StandardOutPath</key>
+    <string>/Users/willgirling/Desktop/NGTL Project/refresh_stdout.log</string>
+
+    <key>StandardErrorPath</key>
+    <string>/Users/willgirling/Desktop/NGTL Project/refresh_stderr.log</string>
+
+    <!-- Playwright (used by the GDSR downloader) needs a real PATH. -->
+    <key>EnvironmentVariables</key>
+    <dict>
+        <key>PATH</key>
+        <string>/Users/willgirling/miniforge3/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin</string>
+    </dict>
+</dict>
+</plist>

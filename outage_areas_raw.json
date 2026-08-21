@@ -1,0 +1,1489 @@
+{
+ "message": "Success",
+ "data": [
+  {
+   "acronym": "RPTA",
+   "color": "lightgray",
+   "isPlantTurnAround": true,
+   "dopAcronym": "RPTA",
+   "notes": "*Includes known plant turnaround activity (within the next 6 months) at the time of publication\n",
+   "displayName": "Plant Turnaround Activity",
+   "capabilityLastUpdatedDate": "2020-06-23 12:11:08.399267",
+   "typeName": "Receipt",
+   "capabilityAssumptionsHeader": null,
+   "id": 10,
+   "centerLat": null,
+   "capabilityAssumptions": null,
+   "centerLng": null,
+   "sortOrder": 10,
+   "offsetLat": null,
+   "hasTypicalFlow": true,
+   "offsetLng": null,
+   "hasLocalOutages": null,
+   "capabilities": [],
+   "locations": []
+  },
+  {
+   "acronym": "LCLR",
+   "color": "lightgray",
+   "isPlantTurnAround": false,
+   "dopAcronym": "LCLR",
+   "notes": null,
+   "displayName": "Local Area/Location",
+   "capabilityLastUpdatedDate": "2020-06-23 12:11:08.399267",
+   "typeName": "Receipt",
+   "capabilityAssumptionsHeader": null,
+   "id": 8,
+   "centerLat": null,
+   "capabilityAssumptions": null,
+   "centerLng": null,
+   "sortOrder": 2,
+   "offsetLat": null,
+   "hasTypicalFlow": true,
+   "offsetLng": null,
+   "hasLocalOutages": null,
+   "capabilities": [],
+   "locations": []
+  },
+  {
+   "acronym": "FHBC",
+   "color": "rgba(150, 39, 154, 0.5)",
+   "isPlantTurnAround": false,
+   "dopAcronym": "FHZ8",
+   "notes": "*Capabilities listed are receipt (takeaway) capabilities from NGTL, not delivery to NGTL",
+   "displayName": "Foothills BC",
+   "capabilityLastUpdatedDate": "2026-07-16 21:43:49.870364",
+   "typeName": "Receipt",
+   "capabilityAssumptionsHeader": null,
+   "id": 4,
+   "centerLat": 49.688179095496345,
+   "capabilityAssumptions": "Energy rate calculated using heating value of 38.5 MJ/m3",
+   "centerLng": -116.13647460937501,
+   "sortOrder": 4,
+   "offsetLat": 50.8679616147114,
+   "hasTypicalFlow": false,
+   "offsetLng": -118.67397302215056,
+   "hasLocalOutages": null,
+   "capabilities": [
+    {
+     "startDate": "2026-11-01 00:00:00",
+     "id": 2792,
+     "capability": 90000.0,
+     "endDate": "2026-11-30 00:00:00",
+     "areaId": 4
+    },
+    {
+     "startDate": "2026-10-01 00:00:00",
+     "id": 2791,
+     "capability": 90000.0,
+     "endDate": "2026-10-31 00:00:00",
+     "areaId": 4
+    },
+    {
+     "startDate": "2026-09-01 00:00:00",
+     "id": 2790,
+     "capability": 89000.0,
+     "endDate": "2026-09-30 00:00:00",
+     "areaId": 4
+    },
+    {
+     "startDate": "2026-08-01 00:00:00",
+     "id": 2789,
+     "capability": 88000.0,
+     "endDate": "2026-08-31 00:00:00",
+     "areaId": 4
+    },
+    {
+     "startDate": "2026-07-01 00:00:00",
+     "id": 2788,
+     "capability": 88000.0,
+     "endDate": "2026-07-31 00:00:00",
+     "areaId": 4
+    },
+    {
+     "startDate": "2026-06-01 00:00:00",
+     "id": 2787,
+     "capability": 89000.0,
+     "endDate": "2026-06-30 00:00:00",
+     "areaId": 4
+    },
+    {
+     "startDate": "2026-05-01 00:00:00",
+     "id": 2786,
+     "capability": 89000.0,
+     "endDate": "2026-05-31 00:00:00",
+     "areaId": 4
+    },
+    {
+     "startDate": "2026-04-01 00:00:00",
+     "id": 2785,
+     "capability": 90000.0,
+     "endDate": "2026-04-30 00:00:00",
+     "areaId": 4
+    },
+    {
+     "startDate": "2026-03-01 00:00:00",
+     "id": 2784,
+     "capability": 90000.0,
+     "endDate": "2026-03-31 00:00:00",
+     "areaId": 4
+    },
+    {
+     "startDate": "2026-02-01 00:00:00",
+     "id": 2783,
+     "capability": 90000.0,
+     "endDate": "2026-02-28 00:00:00",
+     "areaId": 4
+    },
+    {
+     "startDate": "2026-01-01 00:00:00",
+     "id": 2782,
+     "capability": 90000.0,
+     "endDate": "2026-01-31 00:00:00",
+     "areaId": 4
+    },
+    {
+     "startDate": "2025-12-01 00:00:00",
+     "id": 2755,
+     "capability": 90000.0,
+     "endDate": "2025-12-31 00:00:00",
+     "areaId": 4
+    },
+    {
+     "startDate": "2025-11-01 00:00:00",
+     "id": 2754,
+     "capability": 90000.0,
+     "endDate": "2025-11-30 00:00:00",
+     "areaId": 4
+    },
+    {
+     "startDate": "2025-10-01 00:00:00",
+     "id": 2729,
+     "capability": 90000.0,
+     "endDate": "2025-10-31 00:00:00",
+     "areaId": 4
+    },
+    {
+     "startDate": "2025-09-01 00:00:00",
+     "id": 2728,
+     "capability": 89000.0,
+     "endDate": "2025-09-30 00:00:00",
+     "areaId": 4
+    },
+    {
+     "startDate": "2025-08-01 00:00:00",
+     "id": 2727,
+     "capability": 89000.0,
+     "endDate": "2025-08-31 00:00:00",
+     "areaId": 4
+    },
+    {
+     "startDate": "2025-07-01 00:00:00",
+     "id": 2726,
+     "capability": 89000.0,
+     "endDate": "2025-07-31 00:00:00",
+     "areaId": 4
+    },
+    {
+     "startDate": "2025-06-01 00:00:00",
+     "id": 2725,
+     "capability": 89000.0,
+     "endDate": "2025-06-30 00:00:00",
+     "areaId": 4
+    },
+    {
+     "startDate": "2025-05-01 00:00:00",
+     "id": 2724,
+     "capability": 89000.0,
+     "endDate": "2025-05-31 00:00:00",
+     "areaId": 4
+    },
+    {
+     "startDate": "2025-04-01 00:00:00",
+     "id": 2723,
+     "capability": 90000.0,
+     "endDate": "2025-04-30 00:00:00",
+     "areaId": 4
+    },
+    {
+     "startDate": "2025-03-01 00:00:00",
+     "id": 2722,
+     "capability": 90000.0,
+     "endDate": "2025-03-31 00:00:00",
+     "areaId": 4
+    },
+    {
+     "startDate": "2025-02-01 00:00:00",
+     "id": 2721,
+     "capability": 90000.0,
+     "endDate": "2025-02-28 00:00:00",
+     "areaId": 4
+    },
+    {
+     "startDate": "2025-01-01 00:00:00",
+     "id": 2720,
+     "capability": 90000.0,
+     "endDate": "2025-01-31 00:00:00",
+     "areaId": 4
+    },
+    {
+     "startDate": "2024-12-01 00:00:00",
+     "id": 2695,
+     "capability": 90000.0,
+     "endDate": "2024-12-31 00:00:00",
+     "areaId": 4
+    }
+   ],
+   "locations": [
+    {
+     "lng": -114.03264784075122,
+     "id": 38,
+     "areaId": 4,
+     "lat": 48.95611474420828
+    },
+    {
+     "lng": -117.03800331495127,
+     "id": 37,
+     "areaId": 4,
+     "lat": 48.972481306125964
+    },
+    {
+     "lng": -117.14790125927573,
+     "id": 36,
+     "areaId": 4,
+     "lat": 49.54576596702833
+    },
+    {
+     "lng": -115.31748798131495,
+     "id": 35,
+     "areaId": 4,
+     "lat": 50.07649084790189
+    }
+   ]
+  },
+  {
+   "acronym": "FHSK",
+   "color": "rgba(214, 185, 47, 0.5)",
+   "isPlantTurnAround": false,
+   "dopAcronym": "FHZ9",
+   "notes": "*Capabilities listed are receipt (takeaway) capabilities from NGTL, not delivery to NGTL",
+   "displayName": "Foothills Saskatchewan",
+   "capabilityLastUpdatedDate": "2020-06-23 12:11:08.399267",
+   "typeName": "Receipt",
+   "capabilityAssumptionsHeader": null,
+   "id": 5,
+   "centerLat": 50.8459526384811,
+   "capabilityAssumptions": null,
+   "centerLng": -109.22023804809916,
+   "sortOrder": 8,
+   "offsetLat": null,
+   "hasTypicalFlow": false,
+   "offsetLng": null,
+   "hasLocalOutages": null,
+   "capabilities": [],
+   "locations": [
+    {
+     "lng": -110.05195942448789,
+     "id": 42,
+     "areaId": 5,
+     "lat": 49.68804740456157
+    },
+    {
+     "lng": -106.75155572618345,
+     "id": 41,
+     "areaId": 5,
+     "lat": 49.65962434666647
+    },
+    {
+     "lng": -106.77353531504838,
+     "id": 40,
+     "areaId": 5,
+     "lat": 50.89456448835109
+    },
+    {
+     "lng": -110.05195942448789,
+     "id": 39,
+     "areaId": 5,
+     "lat": 50.99142496710064
+    }
+   ]
+  },
+  {
+   "acronym": "LCLD",
+   "color": "lightgray",
+   "isPlantTurnAround": false,
+   "dopAcronym": "LCLD",
+   "notes": null,
+   "displayName": "Local Area/Location",
+   "capabilityLastUpdatedDate": "2020-06-23 12:11:08.399267",
+   "typeName": "Delivery",
+   "capabilityAssumptionsHeader": null,
+   "id": 9,
+   "centerLat": null,
+   "capabilityAssumptions": null,
+   "centerLng": null,
+   "sortOrder": 9,
+   "offsetLat": null,
+   "hasTypicalFlow": true,
+   "offsetLng": null,
+   "hasLocalOutages": null,
+   "capabilities": [],
+   "locations": []
+  },
+  {
+   "acronym": "DPTA",
+   "color": "lightgray",
+   "isPlantTurnAround": true,
+   "dopAcronym": "DPTA",
+   "notes": "*Includes known plant turnaround activity (within the next 6 months) at the time of publication",
+   "displayName": "Plant Turnaround Activity",
+   "capabilityLastUpdatedDate": "2020-06-23 12:11:08.399267",
+   "typeName": "Delivery",
+   "capabilityAssumptionsHeader": null,
+   "id": 11,
+   "centerLat": null,
+   "capabilityAssumptions": null,
+   "centerLng": null,
+   "sortOrder": 11,
+   "offsetLat": null,
+   "hasTypicalFlow": true,
+   "offsetLng": null,
+   "hasLocalOutages": null,
+   "capabilities": [],
+   "locations": []
+  },
+  {
+   "acronym": "NEDA",
+   "color": "rgba(248, 130, 142, 0.5)",
+   "isPlantTurnAround": false,
+   "dopAcronym": "NEDA",
+   "notes": "North and East Delivery Area (NEDA): Unity, Cold Lake, Warwick Southeast interconnects, and all delivery locations in Segments 6, 10, 11, 13, 14, 15, 16, 17, 23, 24, partial 28",
+   "displayName": "North & East Delivery Area",
+   "capabilityLastUpdatedDate": "2020-06-23 12:11:08.399267",
+   "typeName": "Delivery",
+   "capabilityAssumptionsHeader": null,
+   "id": 6,
+   "centerLat": 53.28788002541979,
+   "capabilityAssumptions": null,
+   "centerLng": -114.06007156805481,
+   "sortOrder": 6,
+   "offsetLat": null,
+   "hasTypicalFlow": false,
+   "offsetLng": null,
+   "hasLocalOutages": null,
+   "capabilities": [],
+   "locations": [
+    {
+     "lng": -118.11386,
+     "id": 53,
+     "areaId": 6,
+     "lat": 57.11329
+    },
+    {
+     "lng": -115.46603086295039,
+     "id": 52,
+     "areaId": 6,
+     "lat": 55.84824435641496
+    },
+    {
+     "lng": -114.93891695912939,
+     "id": 51,
+     "areaId": 6,
+     "lat": 53.45799185314767
+    },
+    {
+     "lng": -115.9931447667714,
+     "id": 50,
+     "areaId": 6,
+     "lat": 52.77184575620636
+    },
+    {
+     "lng": -114.80713848317414,
+     "id": 49,
+     "areaId": 6,
+     "lat": 52.317275628444314
+    },
+    {
+     "lng": -113.95277236741651,
+     "id": 48,
+     "areaId": 6,
+     "lat": 51.314063017961814
+    },
+    {
+     "lng": -113.6758675132573,
+     "id": 47,
+     "areaId": 6,
+     "lat": 51.215694104335824
+    },
+    {
+     "lng": -112.04353610453693,
+     "id": 46,
+     "areaId": 6,
+     "lat": 50.773990095021794
+    },
+    {
+     "lng": -110.05195942448789,
+     "id": 45,
+     "areaId": 6,
+     "lat": 50.77291090130648
+    },
+    {
+     "lng": -110.07392250381376,
+     "id": 44,
+     "areaId": 6,
+     "lat": 58.21636560382095
+    },
+    {
+     "lng": -116.21277556003017,
+     "id": 43,
+     "areaId": 6,
+     "lat": 58.21602324637408
+    }
+   ]
+  },
+  {
+   "acronym": "USJR",
+   "color": "rgba(247, 132, 43, 0.5)",
+   "isPlantTurnAround": false,
+   "dopAcronym": "USJR",
+   "notes": "Upstream James River Receipt Area (USJR): Groundbirch East, Gordondale, Big Eddy, and January Creek interconnects, and all receipt locations in Segments 1, 2, 3, 4, 5, 7, 8, partial 9\n\nRefer to USJR Capability and Historical Flow Chart for outages with 'N/A' in the 'Area Base Capability' and 'Area Outage Capability' columns\n\nWhen risk to FT-R is expected to be within a subset of USJR only (eg. Upstream of Latornell or Berland), if adequate downstream IT-D/IT-S exists to offset an FT-R curtailment, area of IT-D/IT-S curtailment could include portions of segments 7, 8, and 9 based on hydraulic equivalency analysis and location of the bottleneck.",
+   "displayName": "Upstream James River",
+   "capabilityLastUpdatedDate": "2026-07-16 21:43:49.226129",
+   "typeName": "Receipt",
+   "capabilityAssumptionsHeader": "Upstream James River Receipt Area (USJR): Segments 1, 2, 3, 4, 5, 7, partial 8, partial 9",
+   "id": 1,
+   "centerLat": 56.79051120019145,
+   "capabilityAssumptions": "Energy rate calculated using heating value of 40.5 MJ/m3\nActual Flow: Daily Average Flow incl. Storage receipts.\nHistorical Flow: Daily Average Flow incl. Storage receipts, 12 months prior.\nNPS 36 Grande Prairie Mainline pressure derates continue to remain in place until the end of 2026.",
+   "centerLng": -120.049206989441,
+   "sortOrder": 1,
+   "offsetLat": null,
+   "hasTypicalFlow": true,
+   "offsetLng": null,
+   "hasLocalOutages": true,
+   "capabilities": [
+    {
+     "startDate": "2026-11-01 00:00:00",
+     "id": 2815,
+     "capability": 388000.0,
+     "endDate": "2026-11-30 00:00:00",
+     "areaId": 1
+    },
+    {
+     "startDate": "2026-10-01 00:00:00",
+     "id": 2770,
+     "capability": 385000.0,
+     "endDate": "2026-10-31 00:00:00",
+     "areaId": 1
+    },
+    {
+     "startDate": "2026-09-01 00:00:00",
+     "id": 2769,
+     "capability": 382000.0,
+     "endDate": "2026-09-30 00:00:00",
+     "areaId": 1
+    },
+    {
+     "startDate": "2026-08-01 00:00:00",
+     "id": 2768,
+     "capability": 380000.0,
+     "endDate": "2026-08-31 00:00:00",
+     "areaId": 1
+    },
+    {
+     "startDate": "2026-07-16 00:00:00",
+     "id": 2767,
+     "capability": 380000.0,
+     "endDate": "2026-07-31 00:00:00",
+     "areaId": 1
+    },
+    {
+     "startDate": "2026-07-01 00:00:00",
+     "id": 2766,
+     "capability": 377000.0,
+     "endDate": "2026-07-15 00:00:00",
+     "areaId": 1
+    },
+    {
+     "startDate": "2026-06-01 00:00:00",
+     "id": 2765,
+     "capability": 379000.0,
+     "endDate": "2026-06-30 00:00:00",
+     "areaId": 1
+    },
+    {
+     "startDate": "2026-05-01 00:00:00",
+     "id": 2764,
+     "capability": 382000.0,
+     "endDate": "2026-05-31 00:00:00",
+     "areaId": 1
+    },
+    {
+     "startDate": "2026-04-01 00:00:00",
+     "id": 2763,
+     "capability": 386000.0,
+     "endDate": "2026-04-30 00:00:00",
+     "areaId": 1
+    },
+    {
+     "startDate": "2026-03-01 00:00:00",
+     "id": 2762,
+     "capability": 387000.0,
+     "endDate": "2026-03-31 00:00:00",
+     "areaId": 1
+    },
+    {
+     "startDate": "2026-02-01 00:00:00",
+     "id": 2761,
+     "capability": 387000.0,
+     "endDate": "2026-02-28 00:00:00",
+     "areaId": 1
+    },
+    {
+     "startDate": "2026-01-01 00:00:00",
+     "id": 2760,
+     "capability": 387000.0,
+     "endDate": "2026-01-31 00:00:00",
+     "areaId": 1
+    },
+    {
+     "startDate": "2025-12-01 00:00:00",
+     "id": 2751,
+     "capability": 386000.0,
+     "endDate": "2025-12-31 00:00:00",
+     "areaId": 1
+    },
+    {
+     "startDate": "2025-11-01 00:00:00",
+     "id": 2750,
+     "capability": 384000.0,
+     "endDate": "2025-11-30 00:00:00",
+     "areaId": 1
+    },
+    {
+     "startDate": "2025-10-01 00:00:00",
+     "id": 2709,
+     "capability": 382000.0,
+     "endDate": "2025-10-31 00:00:00",
+     "areaId": 1
+    },
+    {
+     "startDate": "2025-09-01 00:00:00",
+     "id": 2708,
+     "capability": 379000.0,
+     "endDate": "2025-09-30 00:00:00",
+     "areaId": 1
+    },
+    {
+     "startDate": "2025-08-01 00:00:00",
+     "id": 2707,
+     "capability": 377000.0,
+     "endDate": "2025-08-31 00:00:00",
+     "areaId": 1
+    },
+    {
+     "startDate": "2025-07-01 00:00:00",
+     "id": 2706,
+     "capability": 377000.0,
+     "endDate": "2025-07-31 00:00:00",
+     "areaId": 1
+    },
+    {
+     "startDate": "2025-06-01 00:00:00",
+     "id": 2705,
+     "capability": 379000.0,
+     "endDate": "2025-06-30 00:00:00",
+     "areaId": 1
+    },
+    {
+     "startDate": "2025-05-01 00:00:00",
+     "id": 2704,
+     "capability": 381000.0,
+     "endDate": "2025-05-31 00:00:00",
+     "areaId": 1
+    },
+    {
+     "startDate": "2025-04-01 00:00:00",
+     "id": 2703,
+     "capability": 383000.0,
+     "endDate": "2025-04-30 00:00:00",
+     "areaId": 1
+    },
+    {
+     "startDate": "2025-03-01 00:00:00",
+     "id": 2702,
+     "capability": 385000.0,
+     "endDate": "2025-03-31 00:00:00",
+     "areaId": 1
+    },
+    {
+     "startDate": "2025-02-01 00:00:00",
+     "id": 2701,
+     "capability": 385000.0,
+     "endDate": "2025-02-28 00:00:00",
+     "areaId": 1
+    },
+    {
+     "startDate": "2025-01-01 00:00:00",
+     "id": 2700,
+     "capability": 385000.0,
+     "endDate": "2025-01-31 00:00:00",
+     "areaId": 1
+    }
+   ],
+   "locations": [
+    {
+     "lng": -116.51157240606925,
+     "id": 14,
+     "areaId": 1,
+     "lat": 59.348828068949764
+    },
+    {
+     "lng": -116.21277556003017,
+     "id": 13,
+     "areaId": 1,
+     "lat": 58.21602324637408
+    },
+    {
+     "lng": -118.11386,
+     "id": 12,
+     "areaId": 1,
+     "lat": 57.11329
+    },
+    {
+     "lng": -115.46603086295039,
+     "id": 11,
+     "areaId": 1,
+     "lat": 55.84824435641496
+    },
+    {
+     "lng": -114.93891695912939,
+     "id": 10,
+     "areaId": 1,
+     "lat": 53.45799185314767
+    },
+    {
+     "lng": -115.9931447667714,
+     "id": 9,
+     "areaId": 1,
+     "lat": 52.77184575620636
+    },
+    {
+     "lng": -114.80713848317414,
+     "id": 8,
+     "areaId": 1,
+     "lat": 52.317275628444314
+    },
+    {
+     "lng": -113.95277236741651,
+     "id": 7,
+     "areaId": 1,
+     "lat": 51.314063017961814
+    },
+    {
+     "lng": -114.19217226204962,
+     "id": 6,
+     "areaId": 1,
+     "lat": 50.980582365746606
+    },
+    {
+     "lng": -116.08099708407491,
+     "id": 5,
+     "areaId": 1,
+     "lat": 50.869720649569544
+    },
+    {
+     "lng": -122.4942162472305,
+     "id": 4,
+     "areaId": 1,
+     "lat": 55.25130544365974
+    },
+    {
+     "lng": -122.4942162472305,
+     "id": 3,
+     "areaId": 1,
+     "lat": 58.51582200972888
+    },
+    {
+     "lng": -121.352136122285,
+     "id": 2,
+     "areaId": 1,
+     "lat": 59.310387066750124
+    },
+    {
+     "lng": -118.14552654070718,
+     "id": 1,
+     "areaId": 1,
+     "lat": 59.48944492924445
+    }
+   ]
+  },
+  {
+   "acronym": "OSDA",
+   "color": "rgba(238, 94, 135, 0.5)",
+   "isPlantTurnAround": false,
+   "dopAcronym": "OSDA",
+   "notes": "Oil Sands Delivery Area (OSDA): Cold Lake interconnect, and all delivery locations in Segments 10, 11, 14",
+   "displayName": "Oil Sands Delivery Area",
+   "capabilityLastUpdatedDate": "2026-07-16 21:43:50.607252",
+   "typeName": "Delivery",
+   "capabilityAssumptionsHeader": "Oil Sands Delivery Area: Segments 10, 11, 14",
+   "id": 7,
+   "centerLat": 57.03938225950859,
+   "capabilityAssumptions": "Energy rate calculated using heating value of 39.5 MJ/m3\nActual Flow: Daily Average Flow.\nHistorical Flow: Flow, 12 months prior.",
+   "centerLng": -112.91807504982135,
+   "sortOrder": 7,
+   "offsetLat": null,
+   "hasTypicalFlow": false,
+   "offsetLng": null,
+   "hasLocalOutages": null,
+   "capabilities": [
+    {
+     "startDate": "2026-11-01 00:00:00",
+     "id": 2814,
+     "capability": 99000.0,
+     "endDate": "2026-11-30 00:00:00",
+     "areaId": 7
+    },
+    {
+     "startDate": "2026-10-01 00:00:00",
+     "id": 2813,
+     "capability": 98000.0,
+     "endDate": "2026-10-31 00:00:00",
+     "areaId": 7
+    },
+    {
+     "startDate": "2026-09-01 00:00:00",
+     "id": 2812,
+     "capability": 97000.0,
+     "endDate": "2026-09-30 00:00:00",
+     "areaId": 7
+    },
+    {
+     "startDate": "2026-08-01 00:00:00",
+     "id": 2811,
+     "capability": 96000.0,
+     "endDate": "2026-08-31 00:00:00",
+     "areaId": 7
+    },
+    {
+     "startDate": "2026-07-01 00:00:00",
+     "id": 2810,
+     "capability": 96000.0,
+     "endDate": "2026-07-31 00:00:00",
+     "areaId": 7
+    },
+    {
+     "startDate": "2026-06-01 00:00:00",
+     "id": 2809,
+     "capability": 97000.0,
+     "endDate": "2026-06-30 00:00:00",
+     "areaId": 7
+    },
+    {
+     "startDate": "2026-05-01 00:00:00",
+     "id": 2808,
+     "capability": 98000.0,
+     "endDate": "2026-05-31 00:00:00",
+     "areaId": 7
+    },
+    {
+     "startDate": "2026-04-01 00:00:00",
+     "id": 2807,
+     "capability": 98000.0,
+     "endDate": "2026-04-30 00:00:00",
+     "areaId": 7
+    },
+    {
+     "startDate": "2026-03-01 00:00:00",
+     "id": 2806,
+     "capability": 99000.0,
+     "endDate": "2026-03-31 00:00:00",
+     "areaId": 7
+    },
+    {
+     "startDate": "2026-02-01 00:00:00",
+     "id": 2805,
+     "capability": 100000.0,
+     "endDate": "2026-02-28 00:00:00",
+     "areaId": 7
+    },
+    {
+     "startDate": "2026-01-01 00:00:00",
+     "id": 2804,
+     "capability": 100000.0,
+     "endDate": "2026-01-31 00:00:00",
+     "areaId": 7
+    },
+    {
+     "startDate": "2025-12-01 00:00:00",
+     "id": 2759,
+     "capability": 99000.0,
+     "endDate": "2025-12-31 00:00:00",
+     "areaId": 7
+    },
+    {
+     "startDate": "2025-11-01 00:00:00",
+     "id": 2758,
+     "capability": 98000.0,
+     "endDate": "2025-11-30 00:00:00",
+     "areaId": 7
+    },
+    {
+     "startDate": "2025-10-01 00:00:00",
+     "id": 2749,
+     "capability": 97000.0,
+     "endDate": "2025-10-31 00:00:00",
+     "areaId": 7
+    },
+    {
+     "startDate": "2025-09-01 00:00:00",
+     "id": 2748,
+     "capability": 96000.0,
+     "endDate": "2025-09-30 00:00:00",
+     "areaId": 7
+    },
+    {
+     "startDate": "2025-08-01 00:00:00",
+     "id": 2747,
+     "capability": 95000.0,
+     "endDate": "2025-08-31 00:00:00",
+     "areaId": 7
+    },
+    {
+     "startDate": "2025-07-01 00:00:00",
+     "id": 2746,
+     "capability": 95000.0,
+     "endDate": "2025-07-31 00:00:00",
+     "areaId": 7
+    },
+    {
+     "startDate": "2025-06-01 00:00:00",
+     "id": 2745,
+     "capability": 96000.0,
+     "endDate": "2025-06-30 00:00:00",
+     "areaId": 7
+    },
+    {
+     "startDate": "2025-05-01 00:00:00",
+     "id": 2744,
+     "capability": 97000.0,
+     "endDate": "2025-05-31 00:00:00",
+     "areaId": 7
+    },
+    {
+     "startDate": "2025-04-01 00:00:00",
+     "id": 2743,
+     "capability": 98000.0,
+     "endDate": "2025-04-30 00:00:00",
+     "areaId": 7
+    },
+    {
+     "startDate": "2025-03-01 00:00:00",
+     "id": 2742,
+     "capability": 99000.0,
+     "endDate": "2025-03-31 00:00:00",
+     "areaId": 7
+    },
+    {
+     "startDate": "2025-02-01 00:00:00",
+     "id": 2741,
+     "capability": 100000.0,
+     "endDate": "2025-02-28 00:00:00",
+     "areaId": 7
+    },
+    {
+     "startDate": "2025-01-01 00:00:00",
+     "id": 2740,
+     "capability": 100000.0,
+     "endDate": "2025-01-31 00:00:00",
+     "areaId": 7
+    },
+    {
+     "startDate": "2024-12-01 00:00:00",
+     "id": 2699,
+     "capability": 98000.0,
+     "endDate": "2024-12-31 00:00:00",
+     "areaId": 7
+    }
+   ],
+   "locations": [
+    {
+     "lng": -113.95047778925621,
+     "id": 65,
+     "areaId": 7,
+     "lat": 57.42017959332635
+    },
+    {
+     "lng": -114.47733729338844,
+     "id": 64,
+     "areaId": 7,
+     "lat": 56.35133689890467
+    },
+    {
+     "lng": -113.86266787190085,
+     "id": 63,
+     "areaId": 7,
+     "lat": 55.05067899158112
+    },
+    {
+     "lng": -113.07237861570249,
+     "id": 62,
+     "areaId": 7,
+     "lat": 54.86132351514878
+    },
+    {
+     "lng": -113.35776084710744,
+     "id": 61,
+     "areaId": 7,
+     "lat": 53.510705906871756
+    },
+    {
+     "lng": -112.17232696280992,
+     "id": 60,
+     "areaId": 7,
+     "lat": 53.53684522942903
+    },
+    {
+     "lng": -112.06256456611573,
+     "id": 59,
+     "areaId": 7,
+     "lat": 53.771373929546364
+    },
+    {
+     "lng": -111.46984762396694,
+     "id": 58,
+     "areaId": 7,
+     "lat": 53.86222745604781
+    },
+    {
+     "lng": -110.17465134297522,
+     "id": 57,
+     "areaId": 7,
+     "lat": 54.479930447738745
+    },
+    {
+     "lng": -110.17465134297522,
+     "id": 56,
+     "areaId": 7,
+     "lat": 57.09915100754856
+    },
+    {
+     "lng": -111.03079803719012,
+     "id": 55,
+     "areaId": 7,
+     "lat": 57.65617878228073
+    },
+    {
+     "lng": -113.20409349173555,
+     "id": 54,
+     "areaId": 7,
+     "lat": 57.62087627646005
+    }
+   ]
+  },
+  {
+   "acronym": "EGAT",
+   "color": "rgba(70, 139, 69, 0.5)",
+   "isPlantTurnAround": false,
+   "dopAcronym": "EGAT",
+   "notes": "East Gate Delivery Area (EGAT): Empress, McNeill, Unity, Cold Lake, Aeco C, Warwick Southeast, Chancellor, Carbon, Severn Creek, and Crossfield interconnects, and all delivery locations in Segments 6, 10, 11, 13, 14, 15, 16, 17, 18, 19, 20, partial 21, 23, 24, partial 28.\n- Lower East Gate Delivery Area (LEGAT): Empress, McNeill, Unity, Aeco C, Warwick Southeast, Chancellor, Carbon, Severn Creek, and Crossfield interconnects, and all delivery locations in Segments 15, 16, 17, 18, 19, 20, 23, partial 21, partial 28\n\nCapability/Allowable for Empress/McNeill Border entries is reflective of only Empress/McNeill flow and does not include flow to deliveries in segments 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, partial 21, 23, 24, or partial 28.  Where the Location/Area description includes segments in addition to Empress/McNeill Border, delivery locations in those segments will receive the same percent allowable as Empress/McNeill Border.",
+   "displayName": "East Gate",
+   "capabilityLastUpdatedDate": "2026-07-16 21:43:50.172880",
+   "typeName": "Delivery",
+   "capabilityAssumptionsHeader": "Empress / McNeill Border",
+   "id": 3,
+   "centerLat": 50.590414779916784,
+   "capabilityAssumptions": "Energy rate calculated using heating value of 38.5 MJ/m3\nActual Flow: Daily average flow incl. Storage deliveries.\nHistorical Flow: Daily average flow incl. Storage deliveries, 12 months prior.",
+   "centerLng": -111.27005600862334,
+   "sortOrder": 5,
+   "offsetLat": 53.08630030262826,
+   "hasTypicalFlow": false,
+   "offsetLng": -109.9709951340329,
+   "hasLocalOutages": null,
+   "capabilities": [
+    {
+     "startDate": "2026-11-01 00:00:00",
+     "id": 2803,
+     "capability": 161000.0,
+     "endDate": "2026-11-30 00:00:00",
+     "areaId": 3
+    },
+    {
+     "startDate": "2026-10-01 00:00:00",
+     "id": 2802,
+     "capability": 160000.0,
+     "endDate": "2026-10-31 00:00:00",
+     "areaId": 3
+    },
+    {
+     "startDate": "2026-09-01 00:00:00",
+     "id": 2801,
+     "capability": 159000.0,
+     "endDate": "2026-09-30 00:00:00",
+     "areaId": 3
+    },
+    {
+     "startDate": "2026-08-01 00:00:00",
+     "id": 2800,
+     "capability": 158000.0,
+     "endDate": "2026-08-31 00:00:00",
+     "areaId": 3
+    },
+    {
+     "startDate": "2026-07-01 00:00:00",
+     "id": 2799,
+     "capability": 158000.0,
+     "endDate": "2026-07-31 00:00:00",
+     "areaId": 3
+    },
+    {
+     "startDate": "2026-06-01 00:00:00",
+     "id": 2798,
+     "capability": 160000.0,
+     "endDate": "2026-06-30 00:00:00",
+     "areaId": 3
+    },
+    {
+     "startDate": "2026-05-01 00:00:00",
+     "id": 2797,
+     "capability": 161000.0,
+     "endDate": "2026-05-31 00:00:00",
+     "areaId": 3
+    },
+    {
+     "startDate": "2026-04-01 00:00:00",
+     "id": 2796,
+     "capability": 161000.0,
+     "endDate": "2026-04-30 00:00:00",
+     "areaId": 3
+    },
+    {
+     "startDate": "2026-03-01 00:00:00",
+     "id": 2795,
+     "capability": 160000.0,
+     "endDate": "2026-03-31 00:00:00",
+     "areaId": 3
+    },
+    {
+     "startDate": "2026-02-01 00:00:00",
+     "id": 2794,
+     "capability": 158000.0,
+     "endDate": "2026-02-28 00:00:00",
+     "areaId": 3
+    },
+    {
+     "startDate": "2026-01-01 00:00:00",
+     "id": 2793,
+     "capability": 158000.0,
+     "endDate": "2026-01-31 00:00:00",
+     "areaId": 3
+    },
+    {
+     "startDate": "2025-12-01 00:00:00",
+     "id": 2757,
+     "capability": 158000.0,
+     "endDate": "2025-12-31 00:00:00",
+     "areaId": 3
+    },
+    {
+     "startDate": "2025-11-01 00:00:00",
+     "id": 2756,
+     "capability": 161000.0,
+     "endDate": "2025-11-30 00:00:00",
+     "areaId": 3
+    },
+    {
+     "startDate": "2025-10-01 00:00:00",
+     "id": 2739,
+     "capability": 160000.0,
+     "endDate": "2025-10-31 00:00:00",
+     "areaId": 3
+    },
+    {
+     "startDate": "2025-09-01 00:00:00",
+     "id": 2738,
+     "capability": 160000.0,
+     "endDate": "2025-09-30 00:00:00",
+     "areaId": 3
+    },
+    {
+     "startDate": "2025-08-01 00:00:00",
+     "id": 2737,
+     "capability": 160000.0,
+     "endDate": "2025-08-31 00:00:00",
+     "areaId": 3
+    },
+    {
+     "startDate": "2025-07-01 00:00:00",
+     "id": 2736,
+     "capability": 160000.0,
+     "endDate": "2025-07-31 00:00:00",
+     "areaId": 3
+    },
+    {
+     "startDate": "2025-06-01 00:00:00",
+     "id": 2735,
+     "capability": 161000.0,
+     "endDate": "2025-06-30 00:00:00",
+     "areaId": 3
+    },
+    {
+     "startDate": "2025-05-01 00:00:00",
+     "id": 2734,
+     "capability": 161000.0,
+     "endDate": "2025-05-31 00:00:00",
+     "areaId": 3
+    },
+    {
+     "startDate": "2025-04-01 00:00:00",
+     "id": 2733,
+     "capability": 161000.0,
+     "endDate": "2025-04-30 00:00:00",
+     "areaId": 3
+    },
+    {
+     "startDate": "2025-03-01 00:00:00",
+     "id": 2732,
+     "capability": 160000.0,
+     "endDate": "2025-03-31 00:00:00",
+     "areaId": 3
+    },
+    {
+     "startDate": "2025-02-01 00:00:00",
+     "id": 2731,
+     "capability": 156000.0,
+     "endDate": "2025-02-28 00:00:00",
+     "areaId": 3
+    },
+    {
+     "startDate": "2025-01-01 00:00:00",
+     "id": 2730,
+     "capability": 156000.0,
+     "endDate": "2025-01-31 00:00:00",
+     "areaId": 3
+    },
+    {
+     "startDate": "2024-12-01 00:00:00",
+     "id": 2697,
+     "capability": 156000.0,
+     "endDate": "2024-12-31 00:00:00",
+     "areaId": 3
+    }
+   ],
+   "locations": [
+    {
+     "lng": -110.05195942448789,
+     "id": 34,
+     "areaId": 3,
+     "lat": 50.77291090130648
+    },
+    {
+     "lng": -112.04353610453693,
+     "id": 33,
+     "areaId": 3,
+     "lat": 50.773990095021794
+    },
+    {
+     "lng": -113.69200526940358,
+     "id": 32,
+     "areaId": 3,
+     "lat": 51.230033518386314
+    },
+    {
+     "lng": -113.95277236741651,
+     "id": 31,
+     "areaId": 3,
+     "lat": 51.314063017961814
+    },
+    {
+     "lng": -114.19217226204962,
+     "id": 30,
+     "areaId": 3,
+     "lat": 50.980582365746606
+    },
+    {
+     "lng": -113.61058162149955,
+     "id": 29,
+     "areaId": 3,
+     "lat": 50.66343140731192
+    },
+    {
+     "lng": -111.98531375138477,
+     "id": 28,
+     "areaId": 3,
+     "lat": 50.70521941680915
+    },
+    {
+     "lng": -112.2269076239694,
+     "id": 27,
+     "areaId": 3,
+     "lat": 50.397909214422
+    },
+    {
+     "lng": -111.08482749902389,
+     "id": 26,
+     "areaId": 3,
+     "lat": 49.904872206087376
+    },
+    {
+     "lng": -110.05195942448789,
+     "id": 25,
+     "areaId": 3,
+     "lat": 49.91209826430155
+    }
+   ]
+  },
+  {
+   "acronym": "WGAT",
+   "color": "rgba(83, 192, 213, 0.5)",
+   "isPlantTurnAround": false,
+   "dopAcronym": "WGAT",
+   "notes": "West Gate Delivery Area (WGAT): Alberta B.C. and Alberta Montana interconnects (Delivery locations in partial Segment 21 and Segment 22 may or may not be included depending on season)\n\nCapability/Allowable for Alberta/BC Border entries is reflective of only Alberta/BC flow and does not include flow to deliveries in segments 22 and partial 21. Where the Location/Area description includes segments in addition to Alberta/BC Border, delivery locations in those segments will receive the same percent allowable as Alberta/BC Border.",
+   "displayName": "West Gate",
+   "capabilityLastUpdatedDate": "2026-07-16 21:43:49.551237",
+   "typeName": "Delivery",
+   "capabilityAssumptionsHeader": "Alberta/British Columbia Border",
+   "id": 2,
+   "centerLat": 50.36415351802929,
+   "capabilityAssumptions": "Energy rate calculated using heating value of 38.5 MJ/m3\nActual Flow: Daily Average Flow.\nHistorical Flow: Daily Average Flow, 12 months prior.",
+   "centerLng": -114.0384654622131,
+   "sortOrder": 3,
+   "offsetLat": null,
+   "hasTypicalFlow": false,
+   "offsetLng": null,
+   "hasLocalOutages": null,
+   "capabilities": [
+    {
+     "startDate": "2026-11-01 00:00:00",
+     "id": 2781,
+     "capability": 90000.0,
+     "endDate": "2026-11-30 00:00:00",
+     "areaId": 2
+    },
+    {
+     "startDate": "2026-10-01 00:00:00",
+     "id": 2780,
+     "capability": 90000.0,
+     "endDate": "2026-10-31 00:00:00",
+     "areaId": 2
+    },
+    {
+     "startDate": "2026-09-01 00:00:00",
+     "id": 2779,
+     "capability": 89000.0,
+     "endDate": "2026-09-30 00:00:00",
+     "areaId": 2
+    },
+    {
+     "startDate": "2026-08-01 00:00:00",
+     "id": 2778,
+     "capability": 88000.0,
+     "endDate": "2026-08-31 00:00:00",
+     "areaId": 2
+    },
+    {
+     "startDate": "2026-07-01 00:00:00",
+     "id": 2777,
+     "capability": 88000.0,
+     "endDate": "2026-07-31 00:00:00",
+     "areaId": 2
+    },
+    {
+     "startDate": "2026-06-01 00:00:00",
+     "id": 2776,
+     "capability": 89000.0,
+     "endDate": "2026-06-30 00:00:00",
+     "areaId": 2
+    },
+    {
+     "startDate": "2026-05-01 00:00:00",
+     "id": 2775,
+     "capability": 89000.0,
+     "endDate": "2026-05-31 00:00:00",
+     "areaId": 2
+    },
+    {
+     "startDate": "2026-04-01 00:00:00",
+     "id": 2774,
+     "capability": 90000.0,
+     "endDate": "2026-04-30 00:00:00",
+     "areaId": 2
+    },
+    {
+     "startDate": "2026-03-01 00:00:00",
+     "id": 2773,
+     "capability": 90000.0,
+     "endDate": "2026-03-31 00:00:00",
+     "areaId": 2
+    },
+    {
+     "startDate": "2026-02-01 00:00:00",
+     "id": 2772,
+     "capability": 90000.0,
+     "endDate": "2026-02-28 00:00:00",
+     "areaId": 2
+    },
+    {
+     "startDate": "2026-01-01 00:00:00",
+     "id": 2771,
+     "capability": 90000.0,
+     "endDate": "2026-01-31 00:00:00",
+     "areaId": 2
+    },
+    {
+     "startDate": "2025-12-01 00:00:00",
+     "id": 2753,
+     "capability": 90000.0,
+     "endDate": "2025-12-31 00:00:00",
+     "areaId": 2
+    },
+    {
+     "startDate": "2025-11-01 00:00:00",
+     "id": 2752,
+     "capability": 90000.0,
+     "endDate": "2025-11-30 00:00:00",
+     "areaId": 2
+    },
+    {
+     "startDate": "2025-10-01 00:00:00",
+     "id": 2719,
+     "capability": 90000.0,
+     "endDate": "2025-10-31 00:00:00",
+     "areaId": 2
+    },
+    {
+     "startDate": "2025-09-01 00:00:00",
+     "id": 2718,
+     "capability": 89000.0,
+     "endDate": "2025-09-30 00:00:00",
+     "areaId": 2
+    },
+    {
+     "startDate": "2025-08-01 00:00:00",
+     "id": 2717,
+     "capability": 89000.0,
+     "endDate": "2025-08-31 00:00:00",
+     "areaId": 2
+    },
+    {
+     "startDate": "2025-07-01 00:00:00",
+     "id": 2716,
+     "capability": 89000.0,
+     "endDate": "2025-07-31 00:00:00",
+     "areaId": 2
+    },
+    {
+     "startDate": "2025-06-01 00:00:00",
+     "id": 2715,
+     "capability": 89000.0,
+     "endDate": "2025-06-30 00:00:00",
+     "areaId": 2
+    },
+    {
+     "startDate": "2025-05-01 00:00:00",
+     "id": 2714,
+     "capability": 89000.0,
+     "endDate": "2025-05-31 00:00:00",
+     "areaId": 2
+    },
+    {
+     "startDate": "2025-04-01 00:00:00",
+     "id": 2713,
+     "capability": 90000.0,
+     "endDate": "2025-04-30 00:00:00",
+     "areaId": 2
+    },
+    {
+     "startDate": "2025-03-01 00:00:00",
+     "id": 2712,
+     "capability": 90000.0,
+     "endDate": "2025-03-31 00:00:00",
+     "areaId": 2
+    },
+    {
+     "startDate": "2025-02-01 00:00:00",
+     "id": 2711,
+     "capability": 90000.0,
+     "endDate": "2025-02-28 00:00:00",
+     "areaId": 2
+    },
+    {
+     "startDate": "2025-01-01 00:00:00",
+     "id": 2710,
+     "capability": 90000.0,
+     "endDate": "2025-01-31 00:00:00",
+     "areaId": 2
+    },
+    {
+     "startDate": "2024-12-01 00:00:00",
+     "id": 2693,
+     "capability": 90000.0,
+     "endDate": "2024-12-31 00:00:00",
+     "areaId": 2
+    }
+   ],
+   "locations": [
+    {
+     "lng": -114.19217226204962,
+     "id": 24,
+     "areaId": 2,
+     "lat": 50.980582365746606
+    },
+    {
+     "lng": -113.61058162149955,
+     "id": 23,
+     "areaId": 2,
+     "lat": 50.66343140731192
+    },
+    {
+     "lng": -111.98531375138477,
+     "id": 22,
+     "areaId": 2,
+     "lat": 50.70521941680915
+    },
+    {
+     "lng": -112.2269076239694,
+     "id": 21,
+     "areaId": 2,
+     "lat": 50.397909214422
+    },
+    {
+     "lng": -111.08482749902389,
+     "id": 20,
+     "areaId": 2,
+     "lat": 49.904872206087376
+    },
+    {
+     "lng": -111.48016292688963,
+     "id": 19,
+     "areaId": 2,
+     "lat": 49.01898586885539
+    },
+    {
+     "lng": -114.03264784075122,
+     "id": 18,
+     "areaId": 2,
+     "lat": 48.95611474420828
+    },
+    {
+     "lng": -115.31748798131495,
+     "id": 17,
+     "areaId": 2,
+     "lat": 50.07649084790189
+    },
+    {
+     "lng": -114.9880417914268,
+     "id": 16,
+     "areaId": 2,
+     "lat": 50.51187653572378
+    },
+    {
+     "lng": -114.17540785636943,
+     "id": 15,
+     "areaId": 2,
+     "lat": 50.95713401381666
+    }
+   ]
+  }
+ ]
+}
