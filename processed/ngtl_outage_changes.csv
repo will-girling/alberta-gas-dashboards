@@ -1,9 +1,5 @@
 published,previous_published,uid,outage_id,table_code,facility,work_type,change,detail,start,end,capability_mmcfd,restriction
-2026-08-20 21:31:45,2026-08-19 21:37:42,20528636|LCLR|2026-09-21,20528636,LCLR,Calling Lake West,Meter Station Maintenance,new,not in previous publication,2026-09-21,2026-09-21,0.0,Calling Lake West
-2026-08-20 21:31:45,2026-08-19 21:37:42,20528638|LCLR|2026-10-06,20528638,LCLR,Smith,Meter Station Maintenance,new,not in previous publication,2026-10-06,2026-10-06,0.0,Smith
-2026-08-20 21:31:45,2026-08-19 21:37:42,20727150|LCLR|2026-08-31,20727150,LCLR,AP,NPS 4 Huxley East Lateral - Pipeline Modifications,new,not in previous publication,2026-08-31,2026-09-04,0.0,Huxley East
-2026-08-19 21:37:42,2026-08-19 21:37:42,-1787119210|RPTA|2026-08-19,-1787119210,RPTA,Plant turnaround (receipt),,removed,dropped from the tracker,2026-08-19,2026-08-19,,
-2026-08-19 21:37:42,2026-08-19 21:37:42,-1787119211|DPTA|2026-08-19,-1787119211,DPTA,Plant turnaround (delivery),,removed,dropped from the tracker,2026-08-19,2026-08-19,,
-2026-08-19 21:37:42,2026-08-19 21:37:42,20171417|LCLD|2026-08-06,20171417,LCLD,NPS 16 Waterton Montana Lateral,Pipeline Modification,removed,dropped from the tracker,2026-08-06,2026-08-19,141.2588,Alberta Montana Border Sales
-2026-08-19 21:37:42,2026-08-19 21:37:42,20216955|WGAT|2026-08-18,20216955,WGAT,Burton Creek A3,Compressor Station Maintenance,removed,dropped from the tracker,2026-08-18,2026-08-19,2683.9172000000003,Potential Impact to FT-D; Alberta/BC and Alberta/Montana Borders
-2026-08-19 21:37:42,2026-08-19 21:37:42,20255744|LCLD|2026-08-19,20255744,LCLD,Marguerite Lake Sales,Meter Station Maintenance,removed,dropped from the tracker,2026-08-19,2026-08-19,0.0,Marguerite Lake Sales
+2026-08-21 21:31:35,2026-08-20 21:31:45,-1787810411|DPTA|2026-08-21,-1787810411,DPTA,Plant turnaround (delivery),,rescheduled,start +1d (was Aug 20),2026-08-21,2026-08-27,,
+2026-08-21 21:31:35,2026-08-20 21:31:45,20561684|LCLR|2026-09-23,20561684,LCLR,Butte,Meter Station Maintenance,new,not in previous publication,2026-09-23,2026-09-23,0.0,Butte
+2026-08-20 21:31:45,2026-08-20 21:31:45,-1787205610|RPTA|2026-08-20,-1787205610,RPTA,Plant turnaround (receipt),,removed,dropped from the tracker,2026-08-20,2026-08-20,,
+2026-08-20 21:31:45,2026-08-20 21:31:45,20096127|LCLR|2026-08-17,20096127,LCLR,Crammond,Meter Station Maintenance,removed,dropped from the tracker,2026-08-17,2026-08-20,0.0,Crammond

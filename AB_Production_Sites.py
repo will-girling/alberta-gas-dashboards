@@ -43,6 +43,20 @@ DEPLOY_DIR = PROJECT_ROOT / "processed" / "deploy"
 
 PIPELINE_FILE = MAP_DIR / "major_operating_gas_pipelines.geojson"
 NGTL_FILE = MAP_DIR / "ngtl_operating_pipelines.geojson"
+
+# Gas plants that recover C5+ from the gas stream. This exists because
+# the well condensate layer is structurally incomplete: Petrinex books a
+# volume at the facility that measures it, so an operator sending raw gas
+# to a third-party deep-cut plant has its condensate recorded against the
+# plant and never against the well. Well records carry 68,000 b/d for
+# Alberta; the real stream is roughly 372,000. These points are where the
+# rest is actually recovered. Built by prepare_plant_condensate.py.
+PLANT_COND_FILE = MAP_DIR / "ab_plant_condensate.geojson"
+
+# Warm amber against the cool well palette - these are a different kind
+# of object (midstream infrastructure, not production) and should not be
+# mistaken for a well at a glance.
+PLANT_COLOUR = [255, 170, 60, 225]
 OPERATOR_FILE = MAP_DIR / "ab_operators.json"
 FACILITY_FILE = MAP_DIR / "ab_facilities.json"
 
@@ -61,6 +75,11 @@ PRODUCTS = {
     "Gas": ("gas", "MMcf/d"),
     "Condensate": ("cond", "bbl/d"),
     "Crude oil": ("crude_oil", "bbl/d"),
+    # In-situ SAGD and thermal heavy oil. Mined oil sands are absent:
+    # Petrinex withholds facility type OS entirely, so roughly 1.3
+    # MMbbl/d from Suncor Base Plant, CNRL Horizon, Imperial Kearl and
+    # Syncrude appears nowhere in this data.
+    "Bitumen (in-situ)": ("bitumen", "bbl/d"),
 }
 
 # Wells are coloured by output against their own distribution rather
@@ -323,6 +342,14 @@ with pipe_col:
                                  help="All AER operating gas pipelines")
 with ngtl_col:
     show_ngtl = st.checkbox("NGTL", value=False)
+    show_plants = st.checkbox(
+        "C5+ plants", value=False,
+        help=(
+            "Gas plants by condensate recovered. Where Alberta's C5+ is "
+            "actually measured — the well condensate layer misses about "
+            "four fifths of it."
+        ),
+    )
 
 marker_col, size_col, scale_col, _spacer = st.columns([1.0, 1.1, 1.4, 3.0])
 
@@ -536,6 +563,40 @@ if show_ngtl:
             line_width_min_pixels=1.8,
         ))
 
+# Drawn last of the context layers so plants sit above the pipelines they
+# connect to, but they are added before the wells so a well stays
+# clickable where the two overlap - which in the Montney is everywhere.
+if show_plants and PLANT_COND_FILE.exists():
+    plants = load_points(str(PLANT_COND_FILE), mtime(PLANT_COND_FILE))
+    if not plants.empty:
+        plants = plants.copy()
+        # Square root so area reads as volume, same convention as the
+        # wells. Floored so a small plant is still findable.
+        peak = float(plants["r"].max()) or 1.0
+        plants["radius"] = 6.0 + 26.0 * (plants["r"] / peak) ** 0.5
+        plants["tooltip_title"] = plants["n"]
+        plants["tooltip_line1"] = plants["r"].map(
+            lambda v: f"{v:,.0f} bbl/d C5+ recovered"
+        )
+        # Labelled "processor" deliberately. Pembina and Keyera top this
+        # list and own none of the gas they handle - a viewer reading
+        # this as ownership would draw the wrong conclusion entirely.
+        plants["tooltip_line2"] = "Processor: " + plants["o"].astype(str)
+        plants["tooltip_line3"] = plants["l"].astype(str)
+        plants["tooltip_line4"] = plants["t"].map(
+            {"GP": "Gas plant", "GS": "Gas gathering system"}
+        ).fillna("")
+        plants["tooltip_line5"] = "Not attributed to the gas owner"
+        layers.append(pdk.Layer(
+            "ScatterplotLayer", plants, id="c5-plants",
+            get_position=["lon", "lat"],
+            get_radius="radius", radius_units="pixels",
+            get_fill_color=PLANT_COLOUR,
+            get_line_color=[26, 31, 43, 230],
+            stroked=True, line_width_min_pixels=1.4,
+            pickable=True,
+        ))
+
 # Drawn under the wells: it is context for where the tail sits, not the
 # subject, and it must never sit on top of a pickable well.
 if show_tail and tail_path.exists():
@@ -619,6 +680,23 @@ map_col, side_col = st.columns([1.25, 0.75], gap="large")
 
 with map_col:
     st.pydeck_chart(deck, use_container_width=True, height=820)
+
+    # Shown only on the condensate view, where the data is misleading in
+    # a way that is invisible from the map itself. Petrinex books volumes
+    # at the facility that measures them, so operators who send raw gas
+    # to third-party plants show almost no wellhead condensate - ARC
+    # reads 84 bbl/MMcf while Ovintiv reads 0.1 in Kakwa, which is a
+    # reporting artifact and not a statement about the rock.
+    if product_label == "Condensate":
+        st.caption(
+            "**Field-measured condensate only.** These wells carry "
+            "~68,000 b/d against roughly 372,000 b/d of Alberta C5+. "
+            "Condensate recovered at third-party gas plants is booked "
+            "against the plant, not the well, so operator shares here "
+            "reflect who meters their own liquids — not who produces "
+            "them. Switch on **C5+ plants** to see where the rest is "
+            "recovered."
+        )
 
 with side_col:
     st.markdown('<div class="section-label">Legend</div>',
@@ -1030,6 +1108,7 @@ if history is not None:
 
     product_key = {
         "Gas": "GAS", "Condensate": "COND", "Crude oil": "CRUDE_OIL",
+        "Bitumen (in-situ)": "BITUMEN",
     }[product_label]
     subset = history[history["product_class"] == product_key]
     if chosen_operators:

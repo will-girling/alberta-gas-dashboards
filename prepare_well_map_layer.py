@@ -50,15 +50,17 @@ PROJECT_ROOT = Path("/Users/willgirling/Desktop/NGTL Project")
 SOURCE = PROJECT_ROOT / "processed" / "ab_well_production_located.parquet"
 OUTPUT_DIR = PROJECT_ROOT / "processed" / "map"
 
-# Products to build layers for. BITUMEN is deliberately absent by
-# default: at 1.85M bbl/d it dominates any output-scaled symbol, and it
-# is a different business from the gas book this sits beside. Add it
-# here if it is wanted.
-PRODUCTS = ["GAS", "COND", "CRUDE_OIL"]
+# BITUMEN was left out originally because at 1.85M bbl/d it dominates
+# any output-scaled symbol. It is included now with a much higher
+# threshold, which is the right fix: SAGD pads run from a few barrels
+# to Cenovus's 5,600 b/d wells at Foster Creek, so a 100 b/d floor
+# keeps the map to wells that actually carry the play.
+PRODUCTS = ["GAS", "COND", "CRUDE_OIL", "BITUMEN"]
 
 # Individual points above this rate; everything else is aggregated.
-# MMcf/d for gas, bbl/d for liquids.
-THRESHOLDS = {"GAS": 0.1, "COND": 5.0, "CRUDE_OIL": 5.0}
+# MMcf/d for gas, bbl/d for liquids. Bitumen's floor is 20x the
+# conventional oil floor because the rate distribution is 20x larger.
+THRESHOLDS = {"GAS": 0.1, "COND": 5.0, "CRUDE_OIL": 5.0, "BITUMEN": 100.0}
 
 # ~1.1 m. Far below a screen pixel at any zoom this map uses.
 COORD_DECIMALS = 5
