@@ -1,7 +1,7 @@
 {
-  "run_timestamp": "2026-08-23T12:05:13",
-  "raw_files_found": 418,
-  "flow_rows": 5852,
-  "metric_rows": 3762,
+  "run_timestamp": "2026-08-26T18:05:15",
+  "raw_files_found": 421,
+  "flow_rows": 5894,
+  "metric_rows": 3789,
   "failures": []
 }

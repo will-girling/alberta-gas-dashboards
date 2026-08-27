@@ -3211,6 +3211,137 @@ def _translucent(hex_colour: str, alpha: float = 0.42) -> str:
     return f"rgba({r},{g},{b},{alpha})"
 
 
+# ---- maintenance overlay ------------------------------------
+#
+# TC publishes outages as a rolling snapshot: what is running now and
+# what is scheduled. Anything finished drops off, so prepare_outage_
+# history.py unions the archived JSON pulls in outages_raw/ to rebuild
+# a window. It currently starts 2026-07-10 and extends by a day per
+# download; it cannot be backfilled further because TC keeps no archive.
+OUTAGE_HISTORY = PROJECT_ROOT / "processed" / "ngtl_outage_history.csv"
+
+# Gate acronyms as they appear in the outage feed's area object, mapped
+# to the flow series they constrain. Only the interprovincial gates are
+# listed: an outage on a local receipt lateral tells you nothing about
+# what crossed a border.
+# Fill and border intensity. The range is wide on purpose: the earlier
+# version spanned 0.07-0.25 opacity with no border and every band looked
+# identical against a dark chart.
+OUTAGE_FILL_MIN, OUTAGE_FILL_MAX = 0.10, 0.46
+OUTAGE_EDGE_MIN, OUTAGE_EDGE_MAX = 0.45, 0.95
+OUTAGE_FILL_UNKNOWN, OUTAGE_EDGE_UNKNOWN = 0.05, 0.32
+
+INTERPROVINCIAL_AREAS = {
+    "EGAT": "East Gate (to Saskatchewan / TC Mainline)",
+    "WGAT": "West Gate (to BC / Foothills)",
+    "USJR": "Upstream James River",
+}
+
+
+def outage_history_mtime() -> int:
+    """Cache key. Zero when absent, so a missing file is a cache miss
+    rather than an exception."""
+    return (OUTAGE_HISTORY.stat().st_mtime_ns
+            if OUTAGE_HISTORY.exists() else 0)
+
+
+@st.cache_data(show_spinner=False)
+def load_outage_history(path: str, mtime_ns: int) -> pd.DataFrame:
+    del mtime_ns
+    file = Path(path)
+    if not file.exists():
+        return pd.DataFrame()
+    frame = pd.read_csv(file)
+    for column in ("start", "end"):
+        frame[column] = pd.to_datetime(frame[column], errors="coerce")
+    return frame.dropna(subset=["start", "end"])
+
+
+def add_outage_bands(
+    fig: go.Figure,
+    outages: pd.DataFrame,
+    window_start,
+    window_end,
+    interprovincial_only: bool,
+) -> int:
+    """Shade each outage as a bordered vertical band behind the flows.
+
+    Bands rather than markers because an outage is an interval, and the
+    question - did this dip coincide with maintenance - is about
+    overlap, not a point in time.
+
+    Two deliberate choices about intensity:
+
+    Scaling is RELATIVE to what is on screen, not absolute. Derates in
+    this data are heavily skewed - median 6.9%, and only 24 of 98
+    outages carry a capability figure at all - so an absolute 0-100%
+    ramp renders almost everything at the same faint wash and tells no
+    story. Ranking the quantified outages within the visible window and
+    spreading them across the full intensity range means the largest
+    disruption on screen always reads as the largest, whatever the
+    absolute numbers happen to be. The trade is that intensity is only
+    comparable within one view, which the caption states.
+
+    Borders are drawn on every band, solid where TC published a derate
+    and dashed where it did not. A dashed edge is an honest way to show
+    "maintenance happened here, size unknown" rather than either hiding
+    those outages or implying they were small.
+    """
+    if outages.empty:
+        return 0
+
+    view = outages[
+        (outages["end"] >= window_start) & (outages["start"] <= window_end)
+    ].copy()
+    if interprovincial_only and "area_acronym" in view.columns:
+        view = view[view["area_acronym"].isin(INTERPROVINCIAL_AREAS)]
+    if view.empty:
+        return 0
+
+    # Rank within the window. A single quantified outage would divide by
+    # zero on (n - 1), so it is placed at the top of the range instead.
+    if "derate_pct" in view.columns:
+        known = view["derate_pct"].notna()
+        count = int(known.sum())
+        if count > 1:
+            view.loc[known, "intensity"] = (
+                view.loc[known, "derate_pct"].rank(method="average")
+                - 1
+            ) / (count - 1)
+        elif count == 1:
+            view.loc[known, "intensity"] = 1.0
+    if "intensity" not in view.columns:
+        view["intensity"] = pd.NA
+
+    for row in view.itertuples():
+        rank = getattr(row, "intensity", None)
+        quantified = rank == rank and rank is not None
+
+        if quantified:
+            weight = float(rank)
+            fill = OUTAGE_FILL_MIN + weight * (OUTAGE_FILL_MAX - OUTAGE_FILL_MIN)
+            edge = OUTAGE_EDGE_MIN + weight * (OUTAGE_EDGE_MAX - OUTAGE_EDGE_MIN)
+            dash = "solid"
+            width = 1.2 + weight * 1.6
+        else:
+            fill, edge = OUTAGE_FILL_UNKNOWN, OUTAGE_EDGE_UNKNOWN
+            dash = "dot"
+            width = 1.2
+
+        fig.add_vrect(
+            x0=max(row.start, window_start),
+            x1=min(row.end, window_end),
+            fillcolor=f"rgba(242, 177, 52, {fill:.3f})",
+            line=dict(
+                color=f"rgba(255, 193, 82, {edge:.2f})",
+                width=width,
+                dash=dash,
+            ),
+            layer="below",
+        )
+    return len(view)
+
+
 def render_metric_explorer(
     title: str,
     labels: dict[str, str],
@@ -3223,6 +3354,8 @@ def render_metric_explorer(
     modes: tuple[str, ...] = (
         "Lines", "Stacked area", "Stacked bars (daily)",
     ),
+    allow_outage_overlay: bool = False,
+    outage_interprovincial_only: bool = False,
 ) -> None:
     """Draw one multi-select CSR explorer.
 
@@ -3294,6 +3427,30 @@ def render_metric_explorer(
     # its period-over-period change is the same size as the changes in
     # the components that drive it.
     as_change = chart_mode.startswith("What changed")
+
+    show_outages = False
+    if allow_outage_overlay:
+        outage_history = load_outage_history(
+            str(OUTAGE_HISTORY), outage_history_mtime()
+        )
+        if not outage_history.empty:
+            covered = (
+                f"{outage_history['start'].min():%b %d} to "
+                f"{outage_history['end'].max():%b %d}"
+            )
+            show_outages = st.checkbox(
+                "Shade maintenance windows",
+                value=False,
+                key=f"explorer_outage_{key}",
+                help=(
+                    f"Published NGTL outages, {covered}. Rebuilt from "
+                    "archived snapshots, so it starts where the archive "
+                    "does and grows daily — it is not a full history. "
+                    "Darker shading means a larger published derate; "
+                    "most outages carry no capability figure and are "
+                    "shaded faintly."
+                ),
+            )
 
     control_left, control_right = st.columns(2)
 
@@ -3511,7 +3668,42 @@ def render_metric_explorer(
         )
 
     fig.update_layout(**layout)
+
+    # Drawn after layout so the shapes are not cleared by it, and with
+    # layer="below" so bands sit behind the bars rather than washing
+    # them out.
+    shaded = 0
+    if show_outages and not source.empty:
+        shaded = add_outage_bands(
+            fig,
+            load_outage_history(str(OUTAGE_HISTORY), outage_history_mtime()),
+            source["Timestamp"].min(),
+            source["Timestamp"].max(),
+            outage_interprovincial_only,
+        )
+
     st.plotly_chart(fig, use_container_width=True, key=f"chart_{key}")
+
+    if show_outages:
+        scope = ("interprovincial gates only"
+                 if outage_interprovincial_only else "all areas")
+        if shaded:
+            st.caption(
+                f"{shaded} maintenance windows shaded ({scope}). "
+                "**Solid border and stronger fill** = larger published "
+                "derate, ranked against the other outages *in this view* "
+                "— intensity is relative, so it is comparable within one "
+                "chart but not across two. **Dotted border** = TC "
+                "published no capability figure, which is most of them; "
+                "the timing is real, the size is unknown. Overlap is a "
+                "prompt to check, not evidence of cause."
+            )
+        else:
+            st.caption(
+                f"No published outages ({scope}) overlap this window. "
+                "The archive starts July 2026, so earlier periods will "
+                "always look clear."
+            )
 
     if as_bars:
         bar_count = (
@@ -3719,6 +3911,7 @@ render_metric_explorer(
         "because less gas left the pipe. Useful for attributing a "
         "swing, but the bars are movements, not flows."
     ),
+    allow_outage_overlay=True,
 )
 
 st.markdown("---")
@@ -3863,6 +4056,8 @@ render_metric_explorer(
         "report, so it nets the measured points rather than the whole "
         "system."
     ),
+    allow_outage_overlay=True,
+    outage_interprovincial_only=True,
 )
 
 

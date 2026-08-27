@@ -64,9 +64,25 @@ import requests
 
 PROJECT_ROOT = Path("/Users/willgirling/Desktop/NGTL Project")
 RAW_DIR = PROJECT_ROOT / "petrinex_raw"
-OUTPUT = PROJECT_ROOT / "processed" / "ab_well_production.parquet"
 
-API = "https://www.petrinex.gov.ab.ca/publicdata/API/Files/AB/Vol/{month}/CSV"
+# Petrinex covers Alberta, Saskatchewan and British Columbia on one
+# endpoint and one schema. BC joined through the Petrinex BC Inclusion
+# Project, which matters here because it means BC Montney volumes - the
+# 1.3 Bcf/d that Alberta data cannot see and that carries most of the
+# forecast WCSB growth - come back in the same format as Alberta, with
+# no second parser.
+#
+# BC history is shorter than Alberta's. Ask for more months than exist
+# and the missing ones simply 404, which the downloader reports and
+# skips, so probing costs nothing.
+API = ("https://www.petrinex.gov.ab.ca/publicdata/API/Files/"
+       "{province}/Vol/{month}/CSV")
+
+PROVINCES = ("AB", "SK", "BC")
+
+
+def output_path(province: str) -> Path:
+    return PROJECT_ROOT / "processed" / f"{province.lower()}_well_production.parquet"
 
 REQUEST_TIMEOUT = 300
 
@@ -140,8 +156,8 @@ def months_back(count: int) -> list[str]:
     return out
 
 
-def fetch_month(month: str) -> bytes | None:
-    url = API.format(month=month)
+def fetch_month(month: str, province: str = "AB") -> bytes | None:
+    url = API.format(province=province, month=month)
     try:
         response = requests.get(url, timeout=REQUEST_TIMEOUT)
         response.raise_for_status()
@@ -301,9 +317,9 @@ def tidy(raw: pd.DataFrame, month: str) -> pd.DataFrame:
     return out
 
 
-def inspect(month: str) -> None:
+def inspect(month: str, province: str = "AB") -> None:
     """Dump the raw shape of one month, to check assumptions."""
-    payload = fetch_month(month)
+    payload = fetch_month(month, province)
     if payload is None:
         return
     raw = read_zip(payload)
@@ -327,6 +343,8 @@ def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--months", type=int, default=12,
                         help="how many production months to pull")
+    parser.add_argument("--province", default="AB", choices=PROVINCES,
+                        help="AB, SK or BC. BC history is shorter.")
     parser.add_argument("--inspect", metavar="YYYY-MM",
                         help="print one month's raw structure and exit")
     args = parser.parse_args()
@@ -334,18 +352,18 @@ def main() -> None:
     RAW_DIR.mkdir(parents=True, exist_ok=True)
 
     if args.inspect:
-        inspect(args.inspect)
+        inspect(args.inspect, args.province)
         return
 
     frames, withheld_total = [], 0
     for month in months_back(args.months):
-        target = RAW_DIR / f"AB_Vol_{month}.zip"
+        target = RAW_DIR / f"{args.province}_Vol_{month}.zip"
 
         if target.exists():
             payload = target.read_bytes()
             print(f"  {month}: cached ({len(payload) / 1e6:.1f} MB)")
         else:
-            payload = fetch_month(month)
+            payload = fetch_month(month, args.province)
             if payload is None:
                 continue
             target.write_bytes(payload)
@@ -368,12 +386,13 @@ def main() -> None:
 
     production = pd.concat(frames, ignore_index=True)
 
-    OUTPUT.parent.mkdir(parents=True, exist_ok=True)
+    out = output_path(args.province)
+    out.parent.mkdir(parents=True, exist_ok=True)
     try:
-        production.to_parquet(OUTPUT, index=False)
-        written = OUTPUT
+        production.to_parquet(out, index=False)
+        written = out
     except Exception:
-        written = OUTPUT.with_suffix(".csv")
+        written = out.with_suffix(".csv")
         production.to_csv(written, index=False)
         print("  (parquet unavailable, wrote CSV instead)")
 

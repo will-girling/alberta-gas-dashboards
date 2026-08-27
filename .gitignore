@@ -32,3 +32,25 @@ __pycache__/
 *.pdf
 ~$*
 .~lock.*
+
+# BCER bulk downloads. prod_csv.zip is 117 MB - over GitHub's 100 MB
+# hard limit, not just the warning threshold. Both are reproducible:
+#   curl -O https://iris.bcogc.ca/download/prod_csv.zip
+#   curl -O https://iris.bcogc.ca/download/well_index.csv
+prod_csv.zip
+well_index.csv
+
+# Intermediates built by the prepare scripts and read by nothing at
+# runtime. ab_gas_history_play.parquet alone is 91 MB.
+processed/ab_gas_history_play.parquet
+processed/bc_well_production.parquet
+processed/bc_well_locations.parquet
+processed/bc_frac_activity.parquet
+processed/plant_c5_12m_by_play.parquet
+processed/dls_township_centroids.parquet
+processed/ab_history_located.parquet
+
+# NOTE: processed/monitor/ and processed/ngtl_outage_history.csv ARE
+# committed - they are small and the deployed apps read them directly.
+# The outage history in particular cannot be rebuilt on Streamlit Cloud
+# because outages_raw/ is ignored, so the built CSV must travel.

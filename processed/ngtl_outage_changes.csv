@@ -1,5 +1,3 @@
 published,previous_published,uid,outage_id,table_code,facility,work_type,change,detail,start,end,capability_mmcfd,restriction
-2026-08-21 21:31:35,2026-08-20 21:31:45,-1787810411|DPTA|2026-08-21,-1787810411,DPTA,Plant turnaround (delivery),,rescheduled,start +1d (was Aug 20),2026-08-21,2026-08-27,,
-2026-08-21 21:31:35,2026-08-20 21:31:45,20561684|LCLR|2026-09-23,20561684,LCLR,Butte,Meter Station Maintenance,new,not in previous publication,2026-09-23,2026-09-23,0.0,Butte
-2026-08-20 21:31:45,2026-08-20 21:31:45,-1787205610|RPTA|2026-08-20,-1787205610,RPTA,Plant turnaround (receipt),,removed,dropped from the tracker,2026-08-20,2026-08-20,,
-2026-08-20 21:31:45,2026-08-20 21:31:45,20096127|LCLR|2026-08-17,20096127,LCLR,Crammond,Meter Station Maintenance,removed,dropped from the tracker,2026-08-17,2026-08-20,0.0,Crammond
+2026-08-26 21:45:21,2026-08-25 21:34:13,-1787810411|DPTA|2026-08-26,-1787810411,DPTA,Plant turnaround (delivery),,rescheduled,start +1d (was Aug 25),2026-08-26,2026-08-27,,
+2026-08-26 21:45:21,2026-08-25 21:34:13,-1787896810|RPTA|2026-08-26,-1787896810,RPTA,Plant turnaround (receipt),,rescheduled,start +1d (was Aug 25),2026-08-26,2026-08-28,,

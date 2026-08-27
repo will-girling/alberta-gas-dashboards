@@ -29,8 +29,34 @@ from __future__ import annotations
 
 import pandas as pd
 
+# BC boxes sit first so they claim everything west of the 120th
+# meridian - which is the Alberta/BC border, so they cannot steal an
+# Alberta well. They only populate once BC data is loaded; with Alberta-
+# only data they simply match nothing.
+BC_PLAYS: dict[str, tuple] = {
+    "Montney (BC)": (
+        55.0, 57.5, -123.2, -120.001, "gas",
+        "Groundbirch, Dawson Creek, Fort St John, Altares, Septimus. "
+        "Drier than the Alberta side and the source of most forecast "
+        "WCSB growth - roughly 1.3 Bcf/d against Alberta's 0.6. Feeds "
+        "Coastal GasLink and LNG Canada.",
+    ),
+    "Horn River / Liard": (
+        58.0, 60.1, -124.5, -120.001, "gas",
+        "Far northeast BC. Dry, deep, high-cost shale gas. Largely "
+        "shut in since 2014 - a standing reserve of supply that only "
+        "returns at a materially higher price.",
+    ),
+    "Northeast BC — other": (
+        54.0, 60.1, -128.0, -120.001, "gas",
+        "Everything else in the northeast BC gas fairway, including "
+        "Cordova and the conventional Fort St John fringe.",
+    ),
+}
+
 # name: (lat_min, lat_max, lon_min, lon_max, kind, blurb)
 PLAYS: dict[str, tuple] = {
+    **BC_PLAYS,
     "Montney (Alberta)": (
         53.8, 56.3, -120.1, -117.9, "gas",
         "Grande Prairie, Kakwa, Wapiti, Pipestone. Liquids-rich — the "

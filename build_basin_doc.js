@@ -1,8 +1,11 @@
 // Build the Canadian play/operator reference as a Word document.
 //
-// Organised per play, each with its own operator table. Kept as a
-// script so the measured tables can be regenerated when Petrinex
-// refreshes - those are the parts that go stale.
+// Figures are twelve-month averages to June 2026, computed from Petrinex
+// volumetrics joined to AER ST37. An earlier version quoted a single
+// month, which was the seasonal trough and understated every gas figure
+// by about a tenth, and used well-level condensate, which is a function
+// of where liquids are metered rather than what wells produce. Both are
+// fixed at source here rather than footnoted.
 
 const fs = require("fs");
 const {
@@ -131,160 +134,215 @@ const children = [
     spacing: { after: 200 },
     border: { bottom: RULE },
     children: [new TextRun({
-      text: "Interview reference — production data June 2026", size: 21, color: MUTED,
+      text: "Twelve-month averages to June 2026 · Petrinex volumetrics joined to AER ST37",
+      size: 21, color: MUTED,
     })],
   }),
 
-  lead("How to use the numbers. ",
-    "Operator volumes are measured — Petrinex volumetric data joined to AER ST37, attributed by well licensee. Play assignment is geographic and therefore approximate: wells are binned by bottom-hole location, so a company straddling two plays is split between them. Validated against known footprints (Imperial's Cold Lake figure equals its entire Alberta output, which is correct)."),
-  bullet("Alberta only. Tourmaline and ARC are understated — both hold material BC Montney."),
-  bullet("Conventional only. Mined oil sands are withheld by Petrinex, so add roughly 1.3 MMbbl/d for Suncor, CNRL and Imperial."),
-  bullet("The Deep Basin / Montney boundary is genuinely fuzzy. Wells are assigned to the first play whose box contains them, so the Montney takes the overlap and the Deep Basin figure is correspondingly lower."),
-  bullet("Condensate is understated at the well level — see the caveat before the play list ends. Gas and crude oil are reliable."),
-  bullet("BOE is 6 Mcf to 1 barrel — an energy equivalence, not an economic one. At current prices a gas boe is worth a fraction of an oil boe, so never compare a gas-weighted play to an oil one on BOE alone."),
-  p("Alberta totals: 13.2 Bcf/d gas · 1.97 MMbbl/d bitumen · 550 Mbbl/d conventional crude · roughly 4.5 MMboe/d across all plays.", { after: 180, muted: true }),
+  lead("Reading the numbers. ",
+    "Everything is a daily rate averaged over the twelve months to June 2026. Gas is gross wellhead volume as Petrinex reports it, which runs roughly 10–15% above the marketable basis used by AER and the brokers. Condensate is C5+ recovered at gas plants, geocoded to the plant. BOE is 6 Mcf to 1 barrel — energy equivalence, not economic, so never rank a gas play against an oil one on BOE alone."),
+  p("Alberta: 13.0 Bcf/d gas · 267 Mbbl/d condensate · 532 Mbbl/d conventional crude · 1.96 MMbbl/d bitumen · 4.94 MMboe/d. Add roughly 1.3 MMbbl/d for oil sands mining, which Petrinex does not publish.", { after: 180, muted: true }),
+
+  h1("The basin at a glance"),
+  opTable([
+    ["Athabasca in-situ", "1,203,000"],
+    ["Montney (Alberta)", "1,129,000"],
+    ["Cold Lake", "666,000"],
+    ["Deep Basin", "660,000"],
+    ["Cardium and central foothills", "354,000"],
+    ["Mannville", "282,000"],
+    ["Clearwater", "201,000"],
+    ["Lloydminster corridor and southeast", "130,000"],
+    ["Peace River", "53,000"],
+  ], "boe/d"),
+  p("Two thermal oil plays and one liquids-rich gas play are three quarters of Alberta. Everything else is a rounding error by comparison — which is worth remembering when a conversation drifts toward a small-cap story.", { muted: true }),
 
   h1("Gas plays"),
 
   h2("Montney — Alberta side"),
-  p("Grande Prairie, Kakwa, Wapiti, Pipestone. Liquids-rich: the condensate is worth more than the gas, and it is the condensate that makes these wells work. It prices as C5+ at Edmonton — pentanes plus, quoted against WTI — which is a different stream from Edmonton Light Sweet, the light crude benchmark. C5+ often trades at or above WTI because it is the diluent blended into bitumen, so Montney condensate economics depend on oil sands growth. The BC side — Groundbirch, Dawson Creek, Fort St John — is drier and not captured here."),
-  sizeLine("950,438 boe/d  —  4,678 MMcf/d gas · 52,930 b/d condensate · 117,850 b/d oil  ·  82% gas"),
+  p("Kakwa, Karr, Gold Creek, Wapiti, Gordondale, Pouce Coupe, Pipestone. The largest gas play in the province and the one that matters for LNG. Liquids-rich: 22 barrels of condensate per MMcf, and the condensate is worth more than the gas. It prices as C5+ at Edmonton, quoted against WTI, and usually trades near or above it because it is the diluent oil sands producers must buy. So Montney economics run partly through bitumen demand."),
+  p("The Alberta fairway is liquids-weighted almost throughout, the exceptions being Glacier and Elmworth, which are lean gas. Kakwa and Karr are the best of the condensate window and are dominated by ARC and Ovintiv. Only the Lower and Middle Montney are pervasive across Alberta.", { muted: true }),
+  sizeLine("1,129,000 boe/d  —  5,270 MMcf/d gas · 116,541 b/d condensate · 128,608 b/d crude  ·  22% liquids"),
   opTable([
-    ["Ovintiv", "963"], ["Canadian Natural", "841"], ["Tourmaline", "611"],
-    ["ARC Resources", "550"], ["Whitecap", "395"], ["Birchcliff", "361"],
-  ], "MMcf/d"),
-  p("Also NuVista (Wapiti/Pipestone), Kelt and Paramount. On the BC side, Petronas and Shell tied to LNG Canada.", { muted: true }),
-
-  lead("The liquids. ", "Two separate streams sit inside that 170,780 b/d, and they are not the same business. The condensate is gas-well liquid — it comes out of the same wellbore as the gas and is the reason a Montney well pays. The crude is conventional oil from older pools inside the same geographic box, largely Charlie Lake and Montney oil-window wells, and it belongs to a different set of operators."),
+    ["Canadian Natural", "912"], ["Ovintiv", "770"], ["Tourmaline", "690"],
+    ["ARC Resources", "624"], ["Advantage", "404"], ["Birchcliff", "400"],
+  ], "MMcf/d gas"),
+  lead("The oil beside the gas is mostly the Charlie Lake, a separate play. ", "128,608 b/d of crude sits inside this box and belongs to a different set of firms. The Charlie Lake is a semi-conventional Triassic play, notoriously inconsistent because internal unconformities make reservoir facies unpredictable; the Boundary/Braeburn member is the usual target, and interbedded anhydrite forces harder fracture stimulation. Grande Prairie is two industries sharing a postal code, and they should be named separately."),
   opTable([
-    ["Whitecap Partnership", "37,399"], ["Canadian Natural", "31,455"],
-    ["Tamarack Valley", "8,864"], ["Whitecap Resources", "7,132"],
-    ["Advantage Energy", "5,864"], ["Archer Exploration", "5,402"],
-  ], "b/d crude"),
-  p("Note that the crude leaders are almost entirely absent from the gas table above, and the gas leaders are absent from this one. Grande Prairie is two overlapping industries sharing a postal code.", { muted: true }),
-  lead("Condensate yield. ", "Well-level reporting gives 11.3 bbl/MMcf, but that captures only field-measured liquid. Adding C5+ recovered at gas plants inside the play brings the figure to 121,993 b/d, or 26.1 bbl/MMcf — more than double. That is the number to quote for the play. Never quote it operator by operator: see the condensate caveat below."),
+    ["Whitecap Partnership", "39,672"], ["Canadian Natural", "29,598"],
+    ["Tamarack Valley", "8,927"], ["Whitecap Resources", "6,979"],
+    ["Tourmaline", "6,802"], ["Advantage", "6,580"],
+  ], "b/d liquids"),
+  p("Other Charlie Lake names: Archer, Bonterra, Cardinal, Coelacanth, Kelt, Logan, Paramount, Prairie Thunder.", { muted: true }),
+  lead("The BC side. ", "Groundbirch and Sundown in the south; Dawson and Cutbank Ridge in the middle; Town, Attachie, Inga and Fireweed to the north; then North Montney and Birch. Drier and richer-gas weighted than Alberta, higher pressure gradients, shallower. The Fort St John Graben — a zone of extreme faulting — splits the play north from south. Inga and Fireweed are the best of the BC oil and condensate; Groundbirch through Sundown the best lean gas, and directly competitive with the Haynesville and Marcellus on gas in place per section."),
+  p("BC is larger than the Alberta side and carries most of the forecast WCSB growth. It is not in this data; see the separate Montney supply brief.", { muted: true }),
 
-  h2("Deep Basin — Wapiti to Edson"),
-  p("West-central Alberta tight gas. Spirit River, Wilrich and Falher are geological formations stacked vertically, so one surface location can access several targets — that is where the cost advantage comes from. Lower decline and lower cost than the Montney but less liquids. Peyto is the pure play and the standard reference for a low-cost operator."),
-  sizeLine("502,205 boe/d  —  2,827 MMcf/d gas · 9,977 b/d condensate · 21,032 b/d oil  ·  94% gas"),
+  h2("Deep Basin and Duvernay — Wapiti to Edson"),
+  p("West-central Alberta tight gas, with the Duvernay directly beneath it. Spirit River, Wilrich, Falher and Dunvegan stack vertically, so one surface location reaches several targets — that is where the cost advantage comes from. The fairway runs more than 600 km southeast to northwest, and the strongest gas results have come from Falher shoreface bodies around Kakwa."),
+  p("The Duvernay divides into three: Greater Kaybob, including Simonette, which is consistently liquids-rich and extremely overpressured; the West Shale Basin at Willesden Green, Pembina, Brazeau and Edson; and the East Shale Basin around the Ghost Pine embayment. Kaybob is the proven core, the West Shale Basin the area higher-intensity completions have most advanced.", { muted: true }),
+  sizeLine("660,000 boe/d  —  3,105 MMcf/d gas · 114,804 b/d condensate · 24,410 b/d crude  ·  22% liquids"),
   opTable([
-    ["Tourmaline", "697"], ["Peyto", "539"], ["Canadian Natural", "459"],
-    ["Whitecap", "261"], ["Cenovus", "154"], ["Vermilion", "147"],
-  ], "MMcf/d"),
-  p("The Duvernay — Kaybob, Fox Creek, Willesden Green — sits beneath this same area and cannot be separated geographically. Chevron, Ovintiv and CNRL are the Duvernay names.", { muted: true }),
-
-  lead("The liquids — do not call this a dry play. ", "Well-level data shows 3.5 bbl/MMcf and invites the conclusion that the Deep Basin is dry. Plant data says otherwise: 116,590 b/d of C5+ is recovered at gas plants inside this box, against 9,977 b/d measured at wells — a twelvefold gap, and the largest reporting distortion in the province. On a recovered basis the area yields 41.2 bbl/MMcf, higher than the Montney."),
-  p("The reason is the Duvernay, which sits beneath this same ground and cannot be separated geographically. Pembina's Duvernay Condensate Stabilization facility alone recovers 26,057 b/d — the single largest C5+ source in Alberta. Kaybob, Fox Creek and Simonette are condensate centres, not dry gas country.", { muted: true }),
-  lead("The distinction that matters. ", "Dry applies to the Spirit River tight gas, not to the box. Peyto is the cleanest expression of that — genuinely gas-weighted, almost no liquids cushion, and therefore the most direct AECO beta among the Canadian large caps, with the most torque in a gas rally. But Peyto is not the Deep Basin, and generalising from Peyto to the area gets the liquids story backwards."),
+    ["Tourmaline", "741"], ["Peyto", "563"], ["Canadian Natural", "446"],
+    ["Whitecap", "174"], ["Cenovus", "170"], ["Vermilion", "156"],
+  ], "MMcf/d gas"),
+  lead("The condensate story is the Duvernay, not the tight gas. ", "At 37 bbl/MMcf this area yields more liquids per unit of gas than the Montney does — Pembina's Duvernay Condensate Stabilization facility at Fox Creek alone recovers about 26,000 b/d, the largest single C5+ source in Alberta. Kaybob, Fox Creek and Simonette are condensate centres."),
+  lead("Peyto is the exception that proves it. ", "Peyto is genuinely dry-weighted and is the cleanest AECO beta among the Canadian large caps: almost no liquids cushion under the gas price, and correspondingly the most torque in a gas rally. Generalising from Peyto to the whole area gets the liquids picture backwards."),
 
   h2("Cardium and central foothills"),
-  p("Pembina and Willesden Green. Mature, heavily drilled light oil with associated gas. The box also picks up shallower gas, so treat the gas figure as the area rather than the Cardium formation."),
-  sizeLine("318,603 boe/d  —  1,539 MMcf/d gas · 60,601 b/d oil · 1,465 b/d condensate  ·  81% gas"),
+  p("Pembina and Willesden Green — one of the most prolific oilfields in Canada, producing since the 1950s. Mature, waterflooded, and the most fragmented operator set in the province. It carries several distinct sub-plays: high-permeability conglomerates, upper Cardium clean sands, horizontal wells into banked oil in the core, and long-reach horizontals into the halo extension at Lochend and Wapiti, where recent results have been strongest."),
+  sizeLine("354,000 boe/d  —  1,587 MMcf/d gas · 64,369 b/d crude · 24,981 b/d condensate  ·  25% liquids"),
   opTable([
-    ["TAQA North", "224"], ["Spartan Delta", "186"], ["Tourmaline", "154"],
-    ["Vermilion", "142"], ["Peyto", "103"], ["Cenovus", "85"],
-  ], "MMcf/d"),
+    ["Ricochet Oil", "9,445"], ["InPlay Oil", "8,684"],
+    ["Whitecap Resources", "6,490"], ["Spartan Delta", "5,655"],
+    ["Bonterra", "4,435"], ["Baytex", "3,734"],
+  ], "b/d liquids"),
+  opTable([
+    ["TAQA North", "214"], ["Spartan Delta", "199"], ["Vermilion", "169"],
+    ["Tourmaline", "152"], ["Peyto", "107"], ["Cenovus", "84"],
+  ], "MMcf/d gas"),
+  p("Also Cardinal, Aspenleaf, Yangarra and Obsidian on the oil side.", { muted: true }),
 
-  lead("The liquids. ", "Calling this a gas play is an artifact of the box. Condensate yield is 1.0 bbl/MMcf — effectively nil — but the area produces 60,601 b/d of light crude, and liquids are 20% of boe. The Cardium is an oil play with associated gas, and the gas leaders above are simply operators whose acreage happens to fall inside the same rectangle."),
+  h2("Mannville — coalbed methane and conventional oil"),
+  p("Central Alberta. Two businesses sharing a map. The coalbed methane is very low rate per well across an enormous well count, with almost no decline — Ember is the pure play and drills essentially nothing, harvesting existing wells. Alongside it, Mannville and Glauconite sand pools produce 78,000 b/d of conventional oil for a completely different operator set."),
+  sizeLine("282,000 boe/d  —  1,191 MMcf/d gas · 77,822 b/d crude  ·  30% liquids"),
   opTable([
-    ["InPlay Oil", "8,903"], ["Ricochet Oil", "8,403"], ["Whitecap Resources", "6,896"],
-    ["Bonterra", "4,147"], ["Spartan Delta", "3,822"], ["Obsidian", "3,583"],
-  ], "b/d crude"),
-  p("A further 29,506 b/d of C5+ is recovered at plants inside this box, against 1,465 b/d measured at wells — the foothills gas is wetter than the well records suggest.", { muted: true }),
-  p("Also Cardinal, Aspenleaf, Yangarra and Baytex. This is the most fragmented operator set in the province — a mature waterflooded play with decades of drilling behind it and no dominant owner.", { muted: true }),
+    ["Ember Resources", "170"], ["Whitecap", "137"], ["Canadian Natural", "134"],
+    ["Rockpoint Gas Storage", "91"], ["ATCO Next Energy", "86"], ["Lynx Energy", "72"],
+  ], "MMcf/d gas"),
+  opTable([
+    ["Parallax Energy", "13,425"], ["Aspenleaf Energy", "12,461"],
+    ["Canadian Natural", "8,850"], ["Artis Exploration", "7,474"],
+    ["Whitecap Resources", "3,082"], ["North 40 Resources", "3,024"],
+  ], "b/d liquids"),
+  lead("The Glauconite is the part worth knowing. ", "Central Alberta's Glauconite targets a large sand bar complex — the Hoadley Barrier Bar — with substantial rich gas in place. Porosity improves northward while pressure rises southward, and horizontal drilling has revived historically unproducible lower-porosity sand. Southeast of the bar it becomes stringy lithic channels running into southern Alberta, with smaller shoreface bodies around Caroline and Willesden Green. TAQA, Whitecap and Pine Cliff are the active names."),
+  p("Specialist coverage generally excludes this area and the shallow gas fairway as non-core: the greater southern Alberta Mannville has attracted on the order of 1% of WCSB capital since 2023. Worth knowing, not worth pitching.", { muted: true }),
+  lead("Why the CBM matters commercially. ", "Coalbed methane is adsorbed gas on coal, not free gas in pores, so it needs dewatering rather than pressure depletion and it barely declines. That makes Ember and Pine Cliff near-zero-decline, near-zero-capital cash businesses — the opposite temperament to a Montney driller, and a useful contrast when someone asks how two gas producers can look so different."),
 
-  h2("Mannville CBM and shallow gas — central Alberta"),
-  p("Very low rate per well, enormous well count, minimal decline. This is the long tail in the data: 84% of Alberta wells produce under 0.1 MMcf/d. Ember is the pure play and takes 0% of its production from new wells — pure harvest mode, no drilling."),
-  sizeLine("235,506 boe/d  —  957 MMcf/d gas · 73,240 b/d oil · 2,841 b/d condensate  ·  68% gas"),
+  h2("Lloydminster corridor and southeast Alberta"),
+  p("Medicine Hat east to the Saskatchewan line. Once a shallow gas province; now predominantly heavy oil with a legacy gas overlay that is steadily disappearing. At 41% liquids and 2.6 bbl/MMcf, the oil is the value and the gas is the remnant."),
+  sizeLine("130,000 boe/d  —  461 MMcf/d gas · 52,149 b/d crude  ·  41% liquids"),
   opTable([
-    ["Ember Resources", "182"], ["Whitecap", "146"], ["Canadian Natural", "136"],
-    ["Lynx Energy", "72"], ["Pine Cliff", "51"], ["Tourmaline", "36"],
-  ], "MMcf/d"),
-
-  lead("The liquids. ", "Liquids are 32% of boe here, which is not what the CBM label suggests. Coalbed methane itself is bone dry — adsorbed gas on coal, no associated liquids at all. The 73,240 b/d of crude comes from Mannville and Glauconite sand pools in the same area, produced by a completely different operator set from the CBM harvesters."),
-  opTable([
-    ["Parallax Energy", "12,168"], ["Aspenleaf Energy", "11,786"],
-    ["Canadian Natural", "10,097"], ["Artis Exploration", "5,560"],
-    ["Acerta Operating", "3,552"], ["Whitecap Resources", "3,211"],
-  ], "b/d crude"),
-  p("So the area contains two businesses that share nothing but geography: Ember and Pine Cliff harvesting near-zero-decline dry gas with no capital, and Parallax, Aspenleaf and Artis drilling conventional oil. Averaging them into one boe figure hides both.", { muted: true }),
-
-  h2("Southeast Alberta shallow gas"),
-  p("Medicine Hat and the Lloydminster corridor. Shallow, old, declining, and the reason Alberta has so many low-rate wells."),
-  sizeLine("112,682 boe/d  —  372 MMcf/d gas · 50,628 b/d oil  ·  55% gas"),
-  opTable([
-    ["Canadian Natural", "135"], ["IPC Canada", "91"], ["Canlin Energy", "37"],
-    ["Rockpoint Gas Storage", "26"], ["Pine Cliff", "20"], ["City of Medicine Hat", "9"],
-  ], "MMcf/d"),
-
-  lead("The liquids. ", "The name is now wrong. Liquids are 45% of boe and condensate yield is 0.05 bbl/MMcf — the gas is bone dry and shrinking, while the oil is the majority of the value. This box is really the Lloydminster heavy oil corridor with a legacy shallow gas overlay, and the shallow gas is the part that is disappearing."),
-  opTable([
-    ["Canadian Natural", "23,394"], ["IPC Canada", "8,763"],
-    ["Hemisphere Energy", "3,390"], ["Cardinal Energy", "3,015"],
-    ["Astara Energy", "3,012"], ["Journey Energy", "2,425"],
-  ], "b/d crude"),
-  p("The oil is heavy — Lloydminster blend, priced off WCS, and needing some diluent of its own though far less than bitumen. CNRL and IPC both run thermal and polymer flood projects in this corridor. Strathcona's Lloydminster Thermal assets sit just across the Saskatchewan line and are not in this data.", { muted: true }),
+    ["Canadian Natural", "23,221"], ["IPC Canada", "9,418"],
+    ["Hemisphere Energy", "3,527"], ["Cardinal Energy", "3,332"],
+    ["Astara Energy", "3,078"], ["Journey Energy", "2,435"],
+  ], "b/d liquids"),
+  p("The oil is Lloydminster blend, priced off WCS and needing some diluent of its own — far less than bitumen, since it is 12–16 °API rather than 8–10. CNRL and IPC both run thermal and polymer flood projects here. Strathcona's Lloydminster Thermal assets sit across the Saskatchewan line and are not in this data.", { muted: true }),
+  p("Rockpoint Gas Storage appears in the gas table at 104 MMcf/d because storage cycling reports as production; it is not new supply.", { muted: true }),
 
   h1("Oil plays"),
 
   h2("Athabasca in-situ — Christina Lake, Foster Creek, Firebag, Surmont"),
-  p("SAGD thermal — paired horizontal wells, steam injected above, heated bitumen drains into the producer below. The largest single pool of production in the country and the core of the Canadian large-cap story. Low decline and long life, but capital never stops: new well pairs are drilled continuously to keep the central plant full. Growth arrives in lumps as plants are expanded, which is why thermal names guide to named projects rather than a rig count."),
-  sizeLine("1,230,554 boe/d  —  1,190,664 b/d bitumen · 239 MMcf/d gas  ·  3% gas"),
+  p("SAGD. Paired horizontal wells, steam injected above, heated bitumen draining by gravity into the producer below. The largest single pool of production in the country and the core of the Canadian large-cap story: low decline, long life, and capital that never stops, because new well pairs are drilled continuously to keep the central plant full. Growth arrives in lumps as plants expand, which is why thermal names guide to named projects rather than a rig count."),
+  sizeLine("1,203,000 boe/d  —  1,159,926 b/d bitumen · 261 MMcf/d gas  ·  96% liquids"),
   opTable([
-    ["Cenovus", "439,294"], ["Suncor", "275,728"], ["Canadian Natural", "179,548"],
-    ["ConocoPhillips", "135,914"], ["CNOOC", "69,220"], ["Athabasca Oil", "32,250"],
-  ], "b/d"),
-  p("Cenovus's position reflects the MEG acquisition, which closed 13 November 2025 and consolidated Christina Lake. MEG delisted the next day — do not name it as a comp.", { muted: true }),
+    ["Cenovus", "367,175"], ["Suncor", "263,485"], ["Canadian Natural", "163,045"],
+    ["ConocoPhillips", "147,894"], ["CNOOC Petroleum", "74,208"], ["MEG Energy", "55,118"],
+  ], "b/d bitumen"),
+  lead("The gas connection. ", "SAGD burns 0.25–0.35 GJ of natural gas per barrel to make steam, so a thermal producer is structurally short gas. Cheap AECO is a margin tailwind for Cenovus and a headwind for Tourmaline — the two sides of the basin are not independent bets."),
 
   h2("Cold Lake"),
-  p("Cyclic steam (CSS, or \"huff and puff\" — one well alternately injects steam then produces, rather than the two-well SAGD arrangement) alongside SAGD. Imperial's Cold Lake operation is its entire Alberta production, which is a useful check that the geographic attribution is sound."),
-  sizeLine("639,561 boe/d  —  605,548 b/d bitumen · 204 MMcf/d gas  ·  5% gas"),
+  p("Cyclic steam stimulation rather than SAGD. One well, cycled: inject steam at high pressure for weeks, let it soak, produce until rate falls, repeat. The Clearwater sand here is thinner and more heterogeneous than the McMurray, so gravity drainage would be slow and uneven — CSS supplies its own pressure instead. It burns more gas per barrel and recovers 25–35% of oil in place against SAGD's 50–60%, which is the price of forcing rock that will not cooperate for free."),
+  sizeLine("666,000 boe/d  —  631,385 b/d bitumen · 211 MMcf/d gas  ·  95% liquids"),
   opTable([
-    ["Cenovus", "185,958"], ["Canadian Natural", "166,345"], ["Imperial Oil", "160,371"],
-    ["Strathcona", "65,063"], ["Caltex Trilogy", "12,770"], ["Baytex", "7,277"],
-  ], "b/d"),
+    ["Cenovus", "218,290"], ["Canadian Natural", "166,717"],
+    ["Imperial Oil", "157,826"], ["Strathcona Resources", "61,959"],
+    ["Caltex Trilogy", "12,258"], ["Baytex", "6,664"],
+  ], "b/d bitumen"),
+  lead("Watch the Grand Rapids. ", "Operators in the southern Cold Lake area are expanding out of the McMurray into the Grand Rapids — a more laterally continuous shoreface sand, but thinner and lower quality. Strathcona's Lindbergh was the first full-scale project, IPC's Blackrod the second. It is the main source of incremental in-situ inventory in the area."),
 
-  h2("Clearwater — Marten Hills, Peavine, Nipisi"),
-  p("Shallow, cheap heavy oil produced from multilateral wells — several horizontal legs drilled from a single wellbore, which spreads the cost of one surface location across much more reservoir contact. The highest capital efficiency in Canadian conventional and the most interesting play of the last five years. Almost no associated gas, and no steam, which is what separates it from the thermal plays."),
-  sizeLine("212,131 boe/d  —  192,486 b/d oil · 118 MMcf/d gas  ·  9% gas"),
+  h2("Clearwater — cold heavy oil at Marten Hills, Peavine and Nipisi"),
+  p("Classed as cold heavy oil rather than oil sands, and the best capital efficiency in Canada — a third answer to the viscosity problem. The oil is heavy but mobile enough to flow cold, so no steam and no fracs — just multilateral horizontal wells, often eight to sixteen legs off one vertical, drilled in days for a fraction of a Montney well. Shallow, cheap, fast payout."),
+  sizeLine("201,000 boe/d  —  105,889 b/d bitumen · 75,623 b/d crude · 118 MMcf/d gas  ·  90% liquids"),
   opTable([
-    ["Spur Petroleum", "60,665"], ["Canadian Natural", "44,544"],
-    ["Tamarack Valley", "43,462"], ["Headwater Exploration", "23,123"],
-    ["Cardinal Energy", "4,179"], ["Clear North Energy", "3,048"],
-  ], "b/d"),
+    ["Spur Petroleum", "55,400"], ["Tamarack Valley", "41,971"],
+    ["Canadian Natural", "41,194"], ["Headwater Exploration", "21,710"],
+    ["Cardinal Energy", "4,379"], ["Islander Oil & Gas", "3,266"],
+  ], "b/d liquids"),
+  lead("The trade-off. ", "Cold production recovers only 5–10% of oil in place, against SAGD's 50–60%. Cheap per barrel produced, wasteful of the resource. And decline runs 35–50% a year, so a Clearwater producer is on a drilling treadmill in a way a SAGD operator is not — short-cycle capital that recycles fast, versus long-cycle capital that keeps producing."),
+  p("Waterflood is the live variable. Results at Marten Hills have been strong, with oil rates climbing once voidage replacement passes 1x, and Headwater and Tamarack carry the most upside if that continues. Beyond the main Clearwater sand, the Grand Rapids and Wabiskaw provide localised inventory.", { muted: true }),
+  p("Alberta's Modernized Royalty Framework charges 5% until a well pays out its drilling cost, so cheap fast-payout wells sit in that window for much of their productive life. A real edge, and it is policy rather than geology.", { muted: true }),
 
-  h2("Peace River oil sands"),
-  p("Heavy oil in the northwest. Smaller than Athabasca or Cold Lake, and the play most associated with Baytex."),
-  sizeLine("52,658 boe/d  —  41,668 b/d oil · 66 MMcf/d gas  ·  21% gas"),
+  h2("Peace River"),
+  p("The most methodologically diverse oil area in Alberta, and the only one where every recovery technique coexists. Bitumen viscosity varies enough across the Bluesky–Gething that the right answer changes field to field: cold multilateral horizontals at Seal and Walrus, CSS where the oil is thicker, and waterflood or polymer flood elsewhere."),
+  sizeLine("53,000 boe/d  —  39,074 b/d bitumen · 2,779 b/d crude · 66 MMcf/d gas  ·  79% liquids"),
   opTable([
-    ["Baytex", "17,046"], ["Obsidian Energy", "9,915"],
-    ["Canadian Natural Upgrading", "9,699"], ["Spur Petroleum", "1,789"],
-    ["Surge Energy", "1,220"],
-  ], "b/d"),
+    ["Baytex", "15,278"], ["Obsidian Energy", "11,557"],
+    ["Canadian Natural", "10,248"], ["Spur Petroleum", "1,352"],
+    ["Surge Energy", "1,328"], ["Prairie Thunder", "810"],
+  ], "b/d liquids"),
+  p("Useful as the counterexample to any claim that a play has one right development method. Peace River's answer is 'it depends on the pool'.", { muted: true }),
 
-  h1("Condensate — where the numbers come from"),
-  p("Alberta condensate is reported in two places, and using only one of them understates the stream by roughly five times. This matters more than any other data issue in this document."),
-  sizeLine("Plant C5-SP  275,938 b/d  ·  Plant C5-MX  56,220  ·  Battery COND  95,870  —  Alberta C5+ roughly 372,000 b/d"),
-  lead("Why the split exists. ", "Petrinex books a volume at the facility that measures it. An operator metering liquids at its own field battery has condensate allocated back to the well. An operator sending raw gas to a third-party deep-cut or straddle plant has the C5+ stripped downstream and recorded against the plant — never against the well that produced it."),
-  p("The distortion looks exactly like geology and is not. ARC shows 84 bbl/MMcf across 548 MMcf/d because ARC meters at its own effluent batteries. Ovintiv shows 0.1 bbl/MMcf across 964 MMcf/d — in Kakwa, one of the most condensate-rich areas on the continent. Ovintiv's condensate is real; this file simply cannot see it. Reading that contrast as rock quality would be a serious error."),
-  lead("What was done about it. ", "Plant-level C5-SP is now pulled separately and geocoded from each facility's DLS location, giving 212 mapped plants and 277,413 b/d — against 67,951 b/d visible in the well data. Play-level condensate in this document uses the plant figures. The correction is largest in the Deep Basin, where it is twelvefold and reverses the conclusion the well data invites."),
-  lead("What still cannot be done. ", "Plant volumes cannot be pushed back to wells. Gas receipts recorded at plants total 613 MMcf/d against 11,650 MMcf/d of Alberta production, and only 3.8% name a facility present in the well file — most gas arrives via gathering systems whose upstream legs are not reported. Any well-level allocation would be invention."),
-  bullet("Play-level condensate — use the plant figures. Sound."),
-  bullet("Operator-level condensate — do not use this data at all. Cite company disclosure or AER ST98."),
-  bullet("Plant operator is not the gas owner. The largest C5+ processors are Pembina Gas Infrastructure and Keyera, midstream firms owning none of the molecules."),
-  bullet("Plants draw gas from beyond their own play box, so play attribution of plant volumes shows where condensate is recovered, not strictly where it was produced."),
-  bullet("Gas and crude oil volumes are well-measured throughout and need none of these qualifications."),
-
-  h1("Not in the data"),
-  bullet("Oil sands mining — Athabasca, north of Fort McMurray. Suncor (Base Plant, Fort Hills), CNRL (Horizon, AOSP), Imperial (Kearl), Syncrude. Roughly 1.3 MMbbl/d, withheld by Petrinex."),
-  bullet("BC Montney — Groundbirch, Dawson Creek, Fort St John. Tourmaline, ARC, Ovintiv, Petronas, Shell. Needs BCER production data."),
-  bullet("Saskatchewan — Bakken and Torquay around Estevan, Viking in the southwest, and Strathcona's Lloydminster Thermal. Whitecap is the main public Bakken name after the Veren acquisition. Needs the Petrinex SK pull."),
+  h1("Not in this data"),
+  bullet("Oil sands mining — Suncor Base Plant and Fort Hills, CNRL Horizon and AOSP, Imperial Kearl, Syncrude. Roughly 1.7 MMbbl/d, with CNRL, Suncor and Imperial the only mine operators. Petrinex withholds facility type OS entirely, so the Fort McMurray area looks far quieter here than it is."),
+  bullet("BC Montney — Groundbirch, Dawson Creek, Fort St John. Tourmaline, ARC, Ovintiv, Petronas, Shell. Covered on activity in the separate Montney supply brief; BCER does not publish accessible production."),
+  bullet("Saskatchewan — Bakken and Torquay around Estevan, Viking in the southwest, Strathcona's Lloydminster Thermal. Whitecap is the main public Bakken name after the Veren acquisition."),
   bullet("Offshore Newfoundland — Hibernia, Terra Nova, Hebron, White Rose. Suncor, Cenovus, ExxonMobil."),
 
-  h1("Infrastructure — the marketing half of the question"),
-  lead("Gas. ", "NGTL gathers essentially all Alberta supply and hands off at Empress (east, to the TC Mainline and Saskatchewan) and the Alberta/BC border (west, via Foothills to Kingsgate). Alliance moves liquids-rich gas direct to Chicago. Westcoast T-South carries northeast BC gas to Huntingdon/Sumas. AECO is the Alberta hub; Station 2 is northeast BC."),
-  p("LNG Canada at Kitimat, fed by Coastal GasLink, is the structural change — the first material new demand for WCSB gas in decades. Cedar LNG and Woodfibre follow."),
-  lead("Oil. ", "Enbridge Mainline to the US Midwest, Keystone to Cushing and the Gulf, TMX to Burnaby — the last of which changed the WCS differential. Heavy prices off WCS at Hardisty, light off Edmonton Par."),
+  h1("Gas marketing"),
+  p("Canadian gas marketing differs from the US in one structural way that explains most of the rest: NGTL is a single integrated system with a postage-stamp toll, not a set of competing point-to-point pipes with tradeable firm capacity. You do not buy a path from A to B. You buy receipt service and delivery service on one pool."),
+
+  h2("Hubs"),
+  opTable([
+    ["AECO / NIT", "the Alberta benchmark; a notional trading pool, not a place"],
+    ["Station 2", "northeast BC, upstream of Westcoast processing"],
+    ["Empress", "Alberta/Saskatchewan border; TC Mainline handoff"],
+    ["Kingsgate", "Alberta/BC border to the US; feeds GTN"],
+    ["Huntingdon / Sumas", "BC to Washington State"],
+    ["Dawn, Ontario", "eastern storage and trading hub"],
+  ], "what it is"),
+  p("AECO is a pool rather than a physical junction — gas is deemed delivered anywhere on NGTL. That is why AECO and NGTL operational conditions are so tightly linked: a maintenance event that strands supply moves the price of a hub that has no location.", { muted: true }),
+
+  h2("How service on NGTL works"),
+  lead("Receipt and delivery service. ", "Producers contract firm receipt service to put gas on the system and firm delivery service to take it off at a specific point. The two are separate contracts, and a shortage of either constrains flow. This is genuinely different from the US model, where you buy capacity on a defined path."),
+  lead("Firm versus interruptible. ", "Firm service is reserved and paid whether used or not. Interruptible is cheaper and cut first. During maintenance, interruptible service goes before firm — which is why outage notices move AECO before any physical volume changes."),
+  lead("Why linepack matters commercially. ", "NGTL operates within a tolerance band, and the system's ability to absorb a mismatch between receipts and deliveries is finite. When linepack is drawn down, TC issues operational notices restricting receipts. Your dashboard's decomposition — receipts, deliveries, storage, interprovincial flows and fuel summing to the linepack change — is the physical statement of that constraint."),
+
+  h2("Egress and what competes for the gas"),
+  opTable([
+    ["TC Mainline", "east from Empress to Ontario and Quebec"],
+    ["Foothills / GTN", "south from Kingsgate to the US West Coast"],
+    ["Alliance", "liquids-rich gas direct to Chicago, bundled service"],
+    ["Westcoast T-South", "northeast BC to Huntingdon/Sumas"],
+    ["Coastal GasLink", "to LNG Canada at Kitimat"],
+  ], "route"),
+  p("Alliance is the outlier and worth knowing: it is a wet-gas pipeline that carries liquids-rich gas without full field processing, extracting NGLs at Aux Sable near Chicago. So an Alliance shipper is selling into Chicago basis rather than AECO, and capturing NGL value at the far end. It is the closest thing Canada has to a competing path.", { muted: true }),
+  lead("LNG Canada is the structural change. ", "The first material new demand for WCSB gas in decades. Cedar LNG and Woodfibre follow. The distinction that matters for equities is pricing: LNG Canada offtake is largely AECO-linked, while Cedar has JKM exposure. A producer selling into JKM is in a different price world from one selling at an AECO-linked netback, and that difference is the entire argument about who captures Canadian LNG value."),
+
+  h2("NGL and straddle plants"),
+  p("Liquids are stripped in two places: at field plants near the wellhead, and at straddle plants sitting on the mainline at Empress and Cochrane, which pull remaining NGLs out of gas already in transit. Fort Saskatchewan is the fractionation and storage hub — the Canadian Mont Belvieu."),
+  bullet("C5+ (pentanes plus) — diluent for bitumen. Prices near WTI at Edmonton because oil sands demand is captive. Covered in detail in the condensate section above."),
+  bullet("Propane — heating and export. Ridley Island and Prince Rupert opened Asian export capacity, which structurally lifted Canadian propane off a Conway-linked discount."),
+  bullet("Ethane — Alberta petrochemical feed (NOVA, Dow). Alberta is one of the few places where an integrated ethane-to-plastics chain sits beside the gas supply."),
+
+  h1("Oil marketing"),
+  p("Canada's crude problem is the mirror image of its gas problem: a large volume of a differentiated product, few routes to market, and a price set by buyers a long way away."),
+
+  h2("Benchmarks"),
+  opTable([
+    ["WCS at Hardisty", "heavy blend; the headline Canadian benchmark"],
+    ["Edmonton Par / MSW", "light sweet, the Canadian WTI analogue"],
+    ["C5+ Edmonton", "condensate; near WTI, diluent-driven"],
+    ["SCO / Syncrude Sweet", "upgraded synthetic, premium to WTI"],
+    ["Lloyd blend", "heavy conventional, Lloydminster corridor"],
+  ], "what it is"),
+  p("Hardisty is the physical centre of gravity — roughly 13 million barrels of storage, the largest crude hub in Canada, and the origin point for Keystone and much of the Mainline's heavy service.", { muted: true }),
+  lead("What the WCS differential actually is. ", "Three things stacked: the quality discount for heavy sour crude that needs a coker, the transport cost to reach a refinery that has one, and a scarcity premium when egress is tight. Only the third is volatile. When people say the differential blew out, they almost always mean pipeline capacity ran short, not that the crude got worse."),
+
+  h2("Egress"),
+  opTable([
+    ["Enbridge Mainline", "~3.2 MMb/d, to the US Midwest"],
+    ["Trans Mountain / TMX", "to Burnaby and tidewater"],
+    ["Keystone", "to Cushing and the Gulf Coast"],
+    ["Express-Platte", "to the Rockies and Midwest"],
+    ["Crude by rail", "the marginal, high-cost outlet"],
+  ], "route"),
+  lead("Apportionment — the Canadian-specific concept. ", "When nominations exceed pipeline capacity, shippers are cut back pro rata rather than bidding for space. This is the crucial difference from the US, where firm capacity is contracted and tradeable. Apportionment means a Canadian producer cannot buy its way out of a constraint, and it is why egress shortages translate so directly into price rather than into transport cost."),
+  p("In 2025 the Mainline ran at 95.2% utilisation on 3.23 MMb/d of available capacity — the highest since 2019 — yet apportionment stayed generally below 10% per month, because TMX absorbed the incremental barrel. Trans Mountain has seen no apportionment since start-up. That is the clearest possible evidence of what one new pipeline does to a constrained system.", { muted: true }),
+  lead("Why TMX mattered more than its size. ", "590,000 b/d is not large against 4 MMbbl/d of exports. But it was the first route to tidewater, so it introduced a second buyer. Before TMX, Canadian heavy had one customer — US refiners — and a monopsony sets the price. After TMX, a barrel can reach Asia or the US West Coast, which puts a floor under the differential that did not previously exist."),
+
+  h2("Where the barrels actually go"),
+  p("Overwhelmingly to US refiners in PADD 2 and PADD 3, which built coking capacity specifically to run heavy sour crude. Canada itself has very little complex refining — the Co-op Refinery at Regina, Imperial's Strathcona, Sturgeon — so the value of upgrading is captured mostly in the United States."),
+  p("The symmetry worth stating: the US produces light sweet shale crude its refineries were not built for, and operates cokers with no domestic heavy supply. Canada produces heavy sour and cannot refine it. The two systems are complements. That is why WCS is priced against Gulf Coast coking margins rather than against anything Canadian.", { muted: true }),
 
   h1("Terminology"),
 
@@ -330,8 +388,43 @@ const children = [
   lead("Horizontal well productivity peaked in 2024. ",
     "Measured at the same month of life, restricted to wells that ever exceed 1 MMcf/d, the 2024 cohort beats 2025 at every age. The basin holds production by drilling more wells, not better ones — which makes supply more sensitive to a capital pullback than a flat production line suggests."),
   p("Both are derived from well-level data, and both are falsifiable.", { italic: true }),
-];
 
+  h1("Play naming — how this maps to industry usage"),
+  p("Specialist coverage of the WCSB works with roughly a dozen named plays accounting for about 95% of production. This document is organised around measurable geographic areas, which does not always line up one-to-one. The differences worth knowing:"),
+  opTable([
+    ["Montney (Alberta)", "Montney fairway + Charlie Lake"],
+    ["Deep Basin", "Deep Basin + Duvernay + Dunvegan"],
+    ["Cardium / central foothills", "Cardium, incl. Lochend and Wapiti halo"],
+    ["Mannville", "Mannville CBM + Glauconite / Hoadley"],
+    ["Athabasca in-situ, Cold Lake", "Oil Sands (SAGD and CSS)"],
+    ["Clearwater", "Cold Heavy Oil"],
+  ], "industry play name"),
+  bullet("Charlie Lake is a distinct play, not part of the Montney. It sits inside the Montney box here because the two overlap geographically; the 128,608 b/d of crude in that section is largely Charlie Lake."),
+  bullet("Duvernay cannot be separated from the Deep Basin by surface location — it lies directly beneath. Splitting them needs formation-level attribution, which Alberta's public well data does not carry."),
+  bullet("Mannville and southeast Alberta shallow gas are generally excluded from specialist coverage as non-core. They are included here because they are large in volume and explain a third of Alberta's well count."),
+  bullet("Nomenclature cross-checked against the HTM Energy Research public WCSB Play Atlas, June 2025."),
+  h1("Benchmarking against a published forecast"),
+  p("Peters & Co.'s August 2026 WCSB update publishes supply by play on a marketable, formation-based basis. Setting this document's gross wellhead figures against it — applying the 15% shrinkage Peters itself assumes — shows exactly where the geographic boxes hold and where they do not."),
+  opTable([
+    ["AB Montney", "4.5 vs 3.4  (+32%)"],
+    ["Deep Basin", "2.6 vs 3.9  (−32%)"],
+    ["Combined fairway incl. Duvernay", "7.1 vs 8.1  (−12%)"],
+    ["Alberta total", "11.1 vs ~11.6  (−4%)"],
+  ], "mine vs Peters, Bcf/d"),
+  lead("The combined number reconciles; the split does not. ", "Within 12% across the whole liquids-rich fairway and within 4% at province level, which is about what shrinkage assumptions and box edges should cost. But the internal split is out by ±32% in equal and opposite directions — the Montney box takes acreage that belongs to the Deep Basin, because wells fall into the first box containing them and the Montney is defined first."),
+  p("So: quote this document for operator composition, liquids weighting and relative scale. Quote a formation-based source for the Montney/Deep Basin split. The two are answering different questions and the geographic version loses on that particular one.", { muted: true }),
+  p("Peters' 2026E figures used above: AB Montney 3.4, Deep Basin 3.9, Duvernay 0.8, WCSB total 19.7 Bcf/d.", { muted: true }),
+
+  p("Two further checks that this attribution is not far off: this document's Deep Basin box returns 660,000 boe/d against roughly 650 MBOE/d of horizontal Deep Basin production in that atlas, and its Charlie Lake operator list — Archer, Bonterra, Cardinal, Kelt, Paramount, Tamarack, Tourmaline, Whitecap — matches the firms appearing in the liquids table above.", { muted: true }),
+
+  h1("Method"),
+  p("Operator volumes are measured, not sourced: Petrinex volumetric data joined to AER ST37, attributed by well licensee, averaged over the twelve months to June 2026. Play assignment is geographic — wells are binned by bottom-hole location — and validated against known footprints. Imperial's Cold Lake figure equals its entire Alberta output, which is correct; Athabasca returns Cenovus, Suncor, ConocoPhillips and CNOOC; Clearwater returns Spur, Tamarack and Headwater."),
+  bullet("Gas is gross wellhead. AER and broker forecasts use marketable gas, roughly 10–15% lower. Compare growth rates across the two freely; convert before comparing levels."),
+  bullet("Condensate is C5+ recovered at gas plants, geocoded to the plant. Well-level condensate in Petrinex reflects where liquids are metered rather than what wells produce — ARC reads 84 bbl/MMcf and Ovintiv 0.1 in Kakwa — so it is not used here. The consequence is that condensate is attributed to where it is recovered, which for a plant drawing across a play boundary is approximate."),
+  bullet("Play boxes are rectangles and plays are not, so edges misattribute. The Montney and Deep Basin boundary near Wapiti is genuinely fuzzy, and the Duvernay lies beneath the Deep Basin and cannot be separated geographically at all."),
+  bullet("Alberta only. Tourmaline and ARC are understated because both hold material BC Montney."),
+  bullet("Regenerate with prepare_well_production.py, prepare_plant_condensate.py, then build_basin_doc.js."),
+];
 const doc = new Document({
   numbering: {
     config: [{
