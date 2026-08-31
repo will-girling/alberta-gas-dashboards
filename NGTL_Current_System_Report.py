@@ -129,10 +129,22 @@ OUTAGE_SEVERITY = {
                  "label": "Moderate", "detail": "4-10% below"},
     "minor":    {"colour": [222, 205, 128, 220], "hex": "#decd80",
                  "label": "Minor", "detail": "under 4% below"},
+    # Third-party plant turnarounds, from TC's DPTA and RPTA areas.
+    # These affect receipts into the system rather than pipeline
+    # capability, and TC publishes no capability figure for them, so
+    # they are not on the severity scale at all. Given their own colour
+    # so they stop reading as ungraded maintenance.
+    "turnaround": {"colour": [122, 162, 255, 215], "hex": "#7aa2ff",
+                   "label": "Plant turnaround",
+                   "detail": "third-party plant; no pipeline capability published"},
     "unknown":  {"colour": [150, 158, 172, 200], "hex": "#969eac",
-                 "label": "Severity unknown", "detail": ""},
+                 "label": "Severity unknown",
+                 "detail": "capability published, normal capability not"},
 }
-SEVERITY_RANK = {"unknown": 0, "minor": 1, "moderate": 2, "severe": 3}
+# Turnarounds rank below the graded levels: where a station has both,
+# the measured derate is the more informative label.
+SEVERITY_RANK = {"unknown": 0, "turnaround": 0,
+                 "minor": 1, "moderate": 2, "severe": 3}
 
 # Restriction wording that indicates firm service may be affected.
 OUTAGE_IMPACT_MARKER = "potential"

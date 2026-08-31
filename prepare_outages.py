@@ -192,6 +192,24 @@ def load_latest_api_publication() -> pd.DataFrame | None:
             if isinstance(v, dict) else None
         )
 
+        # Plant turnarounds are a different kind of record and must not
+        # be graded as maintenance with unknown severity.
+        #
+        # TC flags two areas - DPTA and RPTA - with isPlantTurnAround.
+        # Their records carry no description, no facility and no
+        # capability, only dates, a typicalFlow and a negative outageId.
+        # That is deliberate: a third-party plant turnaround affects
+        # receipts into the system, so TC has no pipeline capability
+        # figure to publish for it.
+        #
+        # Read as ordinary outages they became 24 grey "severity
+        # unknown" pins - the bulk of the grey on the map - implying a
+        # measurement was missing when in fact none was ever offered.
+        frame["plant_turnaround"] = frame["area"].apply(
+            lambda v: bool((v or {}).get("isPlantTurnAround"))
+            if isinstance(v, dict) else False
+        )
+
     renamed = {
         "outageId": "Outage Id", "id": "UID", "flowCapability": "Capability",
         "impact": "Type of Restriction", "description": "Description",
@@ -268,6 +286,12 @@ def main() -> None:
         "area": raw.get("Area for Stated Capability", pd.NA),
         "description": raw["Description"].astype(str).str.strip(),
         "source_file": raw["source_file"],
+        # Absent from the CSV exports, which carry no turnaround flag;
+        # those rows default to False and grade normally.
+        "plant_turnaround": (
+            raw["plant_turnaround"].fillna(False).astype(bool)
+            if "plant_turnaround" in raw.columns else False
+        ),
     })
 
     df = df.dropna(subset=["start", "end"])
@@ -418,6 +442,31 @@ def main() -> None:
         return "minor"
 
     df["severity"] = df["derate_pct"].map(grade)
+
+    # A stated capability of zero needs no base at all.
+    #
+    # Requiring a base to grade anything was an over-correction. If TC
+    # says the facility's capability during the outage is 0, it is
+    # flowing nothing - that is a full outage by definition, whatever its
+    # normal capability happens to be. Most of these are meter stations
+    # and short laterals taken entirely out of service, which is exactly
+    # the maintenance worth seeing on a map.
+    #
+    # Zero must be distinguished from absent: a missing capability parses
+    # to NaN, not 0, so only an explicitly stated zero qualifies.
+    if "plant_turnaround" in df.columns:
+        turn = df["plant_turnaround"].fillna(False).astype(bool)
+        df.loc[turn, "severity"] = "turnaround"
+        df.loc[turn, "severity_basis"] = "plant_turnaround"
+        print(f"  {int(turn.sum())} rows are plant turnarounds "
+              "(no pipeline capability published; not graded)")
+
+    full = df["capability_mmcfd"].eq(0)
+    df.loc[full, "derate_pct"] = 100.0
+    df.loc[full, "severity"] = "severe"
+    df.loc[full, "severity_basis"] = "zero_capability"
+    print(f"  {int(full.sum())} rows graded severe on a stated zero "
+          "capability (full outage, no base required)")
 
     # Expand each outage to one row per affected gas day so the dashboard
     # can select by day without interval logic.
