@@ -131,6 +131,12 @@ AREA_CAPABILITY_FILE = PROJECT_ROOT / "processed" / "ngtl_area_capabilities.csv"
 SEVERITY_SEVERE_PCT = 10.0
 SEVERITY_MODERATE_PCT = 4.0
 
+# A facility's own observed history is only a usable stand-in for its
+# normal capability once it has been seen at more than one capability.
+# Seen once, its max is its only reading, so the implied derate is 0% by
+# construction - a false "minor" rather than an honest "unknown".
+MIN_OBSERVATIONS_FOR_BASE = 2
+
 TABLE_LABEL = {
     "EGAT": "East Gate (Empress/McNeill)",
     "WGAT": "West Gate (AB/BC + AB/MT)",
@@ -352,8 +358,47 @@ def main() -> None:
     else:
         print("  NOTE: no area capability file; falling back to observed max")
 
-    observed_max = df.groupby("table_code")["capability_mmcfd"].transform("max")
-    base = pd.Series(base).fillna(observed_max)
+    # Last resort: infer normal capability from the facility's own
+    # observed history.
+    #
+    # This used to group by table_code, which was wrong and badly so.
+    # table_code is an area, not a facility, and an area like LCLR holds
+    # 21 unrelated things — Saddle Hills C4 at 5,403 MMcf/d alongside the
+    # NPS 8 Mitsue Lateral at 2.5. Taking the area's max as every member's
+    # base told the NPS 20 Marten Hills Lateral that its normal capability
+    # was Saddle Hills', so a routine 44 MMcf/d reading became a 99.2%
+    # derate. That is why the map lit up almost entirely red: 55 of 70
+    # currently-active rows were being graded against another facility.
+    #
+    # Grouping by facility removes the cross-facility comparison, but a
+    # facility seen once cannot establish its own normal either — its max
+    # IS its only reading, so the derate would be 0% and everything would
+    # grade "minor". That is the same error inverted. So a facility must
+    # have been seen at MIN_OBSERVATIONS_FOR_BASE distinct capabilities
+    # before its history is trusted.
+    #
+    # Anything left over keeps base NaN, which grades "unknown". An
+    # honest blank is worth more than a colour derived from an unrelated
+    # asset — particularly on a map, where red reads as a finding.
+    facility_key = df["table_code"].astype(str) + "|" + df["facility"].astype(str)
+    grouped = df.groupby(facility_key)["capability_mmcfd"]
+    observed_max = grouped.transform("max")
+    distinct = grouped.transform("nunique")
+
+    usable = (
+        base.isna()
+        & observed_max.notna()
+        & (observed_max > 0)
+        & (distinct >= MIN_OBSERVATIONS_FOR_BASE)
+    )
+    basis = pd.Series(np.where(usable, "observed_max", basis), index=df.index)
+    basis = pd.Series(
+        np.where(base.isna() & ~usable, "none", basis), index=df.index
+    )
+    base = pd.Series(base).where(~usable, observed_max)
+
+    print(f"  base from facility history on {int(usable.sum())} rows; "
+          f"{int((base.isna()).sum())} left ungraded")
 
     df["base_capability_mmcfd"] = base
     df["severity_basis"] = basis
