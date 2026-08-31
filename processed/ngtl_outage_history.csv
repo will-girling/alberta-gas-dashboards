@@ -6,14 +6,14 @@ outageId,start,end,description,impact,area_acronym,area_name,areaId,derate_pct,c
 20217052,2026-07-20,2026-07-29,Schrader Creek - Compressor Station Maintenance," No impact to FT-D anticipated; Empress/McNeill Borders; Segments 15, 16, 17, 18, 19, 20, 23, partial 21, and partial 28 ",EGAT,EGAT,3,3.2,176.6,3,158000.0,153000.0,2026_07_29_21_43_37
 -1785736810,2026-07-31,2026-08-03,,,RPTA,RPTA,10,,,5,,,2026_07_31_21_32_27
 -1785477611,2026-07-31,2026-07-31,,,DPTA,DPTA,11,,,5,,,2026_07_31_21_32_27
-20685235,2026-08-01,2026-09-04,NPS 20 Marten Hills Lateral - Pipeline Maintenance," Potential impact to FT-R; Segments 13, 24, partial 6 (Mitsue, Nipisi, Smith, Figure Lake)",LCLR,LCLR,8,,,22,,1250.0,2026_08_26_21_45_21
--1785996010,2026-08-04,2026-08-06,,,RPTA,RPTA,10,,,5,,,2026_07_31_21_32_27
+20685235,2026-08-01,2026-09-04,NPS 20 Marten Hills Lateral - Pipeline Maintenance," Potential impact to FT-R; Segments 13, 24, partial 6 (Mitsue, Nipisi, Smith, Figure Lake)",LCLR,LCLR,8,,,24,,1250.0,2026_08_28_21_40_44
 20438609,2026-08-04,2026-08-06,NPS 6 Atlee Buffalo Lateral - Pipeline Modifications,Atlee Buffalo,LCLR,LCLR,8,,,8,,0.0,2026_08_06_21_42_09
+-1785996010,2026-08-04,2026-08-06,,,RPTA,RPTA,10,,,5,,,2026_07_31_21_32_27
 20721549,2026-08-05,2026-08-14,Otter Lake - Compressor Station Maintenance," No impact to FT-D anticipated; Empress/McNeill Borders; Segments 6, 10, 11, 13, 14, 15, 16, 17, 18, 19, 20, partial 21, 23, 24, partial 28",EGAT,EGAT,3,6.3,353.1,40,158000.0,148000.0,2026_08_14_21_41_40
 20216958,2026-08-05,2026-08-12,Crowsnest A - Compressor Station Maintenance, Potential Impact to FT; Alberta/BC Border; Foothills BC,FHBC,FHZ8,4,26.1,812.2,12,88000.0,65000.0,2026_08_12_21_33_46
+20721952,2026-08-06,2026-08-06,Welling - Meter Station Maintenance,Welling,LCLR,LCLR,8,,,2,,0.0,2026_08_06_21_42_09
 20171417,2026-08-06,2026-08-19,NPS 16 Waterton Montana Lateral - Pipeline Modification, Alberta Montana Border Sales,LCLD,LCLD,9,,,15,,4000.0,2026_08_19_21_37_42
 20163677,2026-08-06,2026-08-09,NPS 36 British Columbia Mainline - Pipeline Maintenance, Potential Impact to FT; Alberta/BC Border; Foothills BC,FHBC,FHZ8,4,31.8,988.8,9,88000.0,60000.0,2026_08_07_21_35_21
-20721952,2026-08-06,2026-08-06,Welling - Meter Station Maintenance,Welling,LCLR,LCLR,8,,,2,,0.0,2026_08_06_21_42_09
 20216815,2026-08-10,2026-08-14,Saddle Hills B3 - Compressor Station Maintenance, Potential impact to FT-R; Segment 4,LCLR,LCLR,8,,,14,,152000.0,2026_08_14_21_41_40
 20650230,2026-08-10,2026-08-10,Fort Kent #2 Sales - Meter Station Maintenance,Fort Kent #2 Sales,LCLD,LCLD,9,,,7,,585.0,2026_08_10_21_46_57
 20724000,2026-08-11,2026-08-17,Meikle River A - Compressor Station Maintenance,Muskeg Creek,LCLR,LCLR,8,,,2,,0.0,2026_08_17_22_17_32
@@ -24,76 +24,79 @@ outageId,start,end,description,impact,area_acronym,area_name,areaId,derate_pct,c
 20216955,2026-08-18,2026-08-19,Burton Creek A3 - Compressor Station Maintenance, Potential Impact to FT-D; Alberta/BC and Alberta/Montana Borders,WGAT,WGAT,2,13.6,423.8,17,88000.0,76000.0,2026_08_19_21_37_42
 -1787119211,2026-08-19,2026-08-19,,,DPTA,DPTA,11,,,17,,,2026_08_19_21_37_42
 20137307,2026-08-19,2026-08-26,NPS 8 Ferrier South Lateral - Pipeline Maintenance,Ferrier South B,LCLR,LCLR,8,,,22,,250.0,2026_08_26_21_45_21
-20255744,2026-08-19,2026-08-19,Marguerite Lake Sales - Meter Station Maintenance,Marguerite Lake Sales,LCLD,LCLD,9,,,17,,0.0,2026_08_19_21_37_42
 -1787119210,2026-08-19,2026-08-19,,,RPTA,RPTA,10,,,5,,,2026_08_19_21_37_42
+20255744,2026-08-19,2026-08-19,Marguerite Lake Sales - Meter Station Maintenance,Marguerite Lake Sales,LCLD,LCLD,9,,,17,,0.0,2026_08_19_21_37_42
 -1787205610,2026-08-20,2026-08-20,,,RPTA,RPTA,10,,,13,,,2026_08_20_21_31_45
 -1787292010,2026-08-21,2026-08-21,,,RPTA,RPTA,10,,,14,,,2026_08_21_21_31_35
-20216752,2026-08-24,2026-08-28,Goodfish - Compressor Station Maintenance," No impact to FT-D anticipated; Empress/McNeill Borders; Segments 6, 10, 11, 13, 14, 15, 16, 17, 18, 19, 20, partial 21, 23, 24, partial 28 ",EGAT,EGAT,3,6.3,353.1,110,158000.0,148000.0,2026_08_26_21_45_21
-20471338,2026-08-25,2026-08-29,"NPS 8 Delia Lateral, Craigmyle Lat Loops - Pipeline Maintenance",Craigmyle,LCLR,LCLR,8,,,20,,0.0,2026_08_26_21_45_21
--1787896810,2026-08-26,2026-08-28,,,RPTA,RPTA,10,,,22,,,2026_08_26_21_45_21
--1787810411,2026-08-26,2026-08-27,,,DPTA,DPTA,11,,,22,,,2026_08_26_21_45_21
--1788069611,2026-08-28,2026-08-30,,,DPTA,DPTA,11,,,22,,,2026_08_26_21_45_21
+20216752,2026-08-24,2026-08-28,Goodfish - Compressor Station Maintenance," No impact to FT-D anticipated; Empress/McNeill Borders; Segments 6, 10, 11, 13, 14, 15, 16, 17, 18, 19, 20, partial 21, 23, 24, partial 28 ",EGAT,EGAT,3,6.3,353.1,120,158000.0,148000.0,2026_08_28_21_40_44
+20471338,2026-08-25,2026-08-29,"NPS 8 Delia Lateral, Craigmyle Lat Loops - Pipeline Maintenance",Craigmyle,LCLR,LCLR,8,,,22,,0.0,2026_08_28_21_40_44
+-1787810411,2026-08-27,2026-08-27,,,DPTA,DPTA,11,,,23,,,2026_08_27_21_29_55
+-1787896810,2026-08-28,2026-08-28,,,RPTA,RPTA,10,,,24,,,2026_08_28_21_40_44
+-1788069611,2026-08-28,2026-08-30,,,DPTA,DPTA,11,,,24,,,2026_08_28_21_40_44
 -1788156010,2026-08-29,2026-08-31,,,RPTA,RPTA,10,,,12,,,2026_08_12_21_33_46
--1788501610,2026-08-29,2026-09-04,,,RPTA,RPTA,10,,,22,,,2026_08_26_21_45_21
-20217076,2026-08-30,2026-09-03,Knight - Compressor Station Maintenance," No impact to FT-D anticipated; Empress/McNeill Borders; Segments 15, 16, 17, 18, 19, 20, partial 21, 23, partial 28",EGAT,EGAT,3,6.3,353.1,88,158000.0,148000.0,2026_08_26_21_45_21
--1788328811,2026-08-31,2026-09-02,,,DPTA,DPTA,11,,,22,,,2026_08_26_21_45_21
-20727150,2026-08-31,2026-09-04,AP - NPS 4 Huxley East Lateral - Pipeline Modifications, Huxley East,LCLR,LCLR,8,,,5,,0.0,2026_08_26_21_45_21
-20216816,2026-08-31,2026-09-04,Saddle Hills C4 - Compressor Station Maintenance, Potential impact to FT-R; Segment 4,LCLR,LCLR,8,,,22,,153000.0,2026_08_26_21_45_21
-19994714,2026-09-01,2026-09-04,Didsbury - Compressor Station Maintenance," No impact to FT-D anticipated; Empress/McNeill Borders; Segments 15, 16, 17, 18, 19, 20, 23, partial 21, and partial 28",EGAT,EGAT,3,2.5,141.3,44,159000.0,155000.0,2026_08_26_21_45_21
--1788415211,2026-09-03,2026-09-03,,,DPTA,DPTA,11,,,22,,,2026_08_26_21_45_21
--1788588011,2026-09-04,2026-09-05,,,DPTA,DPTA,11,,,22,,,2026_08_26_21_45_21
--1789192810,2026-09-05,2026-09-12,,,RPTA,RPTA,10,,,22,,,2026_08_26_21_45_21
+-1788501610,2026-08-29,2026-09-04,,,RPTA,RPTA,10,,,24,,,2026_08_28_21_40_44
+20217076,2026-08-30,2026-09-03,Knight - Compressor Station Maintenance," No impact to FT-D anticipated; Empress/McNeill Borders; Segments 15, 16, 17, 18, 19, 20, partial 21, 23, partial 28",EGAT,EGAT,3,6.3,353.1,96,158000.0,148000.0,2026_08_28_21_40_44
+20727150,2026-08-31,2026-09-04,AP - NPS 4 Huxley East Lateral - Pipeline Modifications, Huxley East,LCLR,LCLR,8,,,7,,0.0,2026_08_28_21_40_44
+-1788328811,2026-08-31,2026-09-02,,,DPTA,DPTA,11,,,24,,,2026_08_28_21_40_44
+20216816,2026-08-31,2026-09-04,Saddle Hills C4 - Compressor Station Maintenance, Potential impact to FT-R; Segment 4,LCLR,LCLR,8,,,24,,153000.0,2026_08_28_21_40_44
+19994714,2026-09-01,2026-09-04,Didsbury - Compressor Station Maintenance," No impact to FT-D anticipated; Empress/McNeill Borders; Segments 15, 16, 17, 18, 19, 20, 23, partial 21, and partial 28",EGAT,EGAT,3,2.5,141.3,48,159000.0,155000.0,2026_08_28_21_40_44
+-1788415211,2026-09-03,2026-09-03,,,DPTA,DPTA,11,,,24,,,2026_08_28_21_40_44
+-1788588011,2026-09-04,2026-09-05,,,DPTA,DPTA,11,,,24,,,2026_08_28_21_40_44
 -1789020010,2026-09-05,2026-09-10,,,RPTA,RPTA,10,,,12,,,2026_08_12_21_33_46
--1790402411,2026-09-06,2026-09-26,,,DPTA,DPTA,11,,,22,,,2026_08_26_21_45_21
-20216770,2026-09-08,2026-09-21,Woodenhouse C3 - Compressor Station Maintenance," Potential impact to FT-D; Segments 10, 11, and 14",OSDA,OSDA,7,4.1,141.3,22,97000.0,93000.0,2026_08_26_21_45_21
-20216789,2026-09-08,2026-10-02,Alces River - Compressor Station Maintenance," No impact to FT-D anticipated; Empress/McNeill Borders; Segments 6, 10, 11, 13, 14, 15, 16, 17, 18, 19, 20, partial 21, 23, 24, partial 28 ",EGAT,EGAT,3,3.1,176.6,88,159000.0,154000.0,2026_08_26_21_45_21
-20519862,2026-09-09,2026-09-09,Cold Lake Border Sales - Meter Station Maintenance,Cold Lake Border Sales,LCLD,LCLD,9,,,22,,0.0,2026_08_26_21_45_21
-20721651,2026-09-12,2026-09-26,NPS 8 Mitsue Lateral - Pipeline Modifications,"Mitsue, Nipisi",LCLR,LCLR,8,,,17,,100.0,2026_08_26_21_45_21
+-1789192810,2026-09-05,2026-09-12,,,RPTA,RPTA,10,,,24,,,2026_08_28_21_40_44
+-1789452011,2026-09-06,2026-09-15,,,DPTA,DPTA,11,,,2,,,2026_08_28_21_40_44
+20216789,2026-09-08,2026-10-02,Alces River - Compressor Station Maintenance," No impact to FT-D anticipated; Empress/McNeill Borders; Segments 6, 10, 11, 13, 14, 15, 16, 17, 18, 19, 20, partial 21, 23, 24, partial 28 ",EGAT,EGAT,3,3.1,176.6,96,159000.0,154000.0,2026_08_28_21_40_44
+20216770,2026-09-08,2026-09-21,Woodenhouse C3 - Compressor Station Maintenance," Potential impact to FT-D; Segments 10, 11, and 14",OSDA,OSDA,7,4.1,141.3,24,97000.0,93000.0,2026_08_28_21_40_44
+20519862,2026-09-09,2026-09-09,Cold Lake Border Sales - Meter Station Maintenance,Cold Lake Border Sales,LCLD,LCLD,9,,,24,,0.0,2026_08_28_21_40_44
+20721651,2026-09-12,2026-09-26,NPS 8 Mitsue Lateral - Pipeline Modifications,"Mitsue, Nipisi",LCLR,LCLR,8,,,19,,70.0,2026_08_28_21_40_44
 -1789624810,2026-09-13,2026-09-17,,,RPTA,RPTA,10,,,16,,,2026_08_18_21_50_21
--1789711210,2026-09-13,2026-09-18,,,RPTA,RPTA,10,,,6,,,2026_08_26_21_45_21
-19731861,2026-09-13,2026-10-08,NPS 36 Grande Prairie Mainline - Pipeline Maintenance,Gold Creek South Summary,LCLR,LCLR,8,,,22,,3788.0,2026_08_26_21_45_21
-20216997,2026-09-14,2026-09-17,Elko - Compressor Station Maintenance, Potential Impact to FT; Alberta/BC Border; Foothills BC,FHBC,FHZ8,4,19.1,600.3,22,89000.0,72000.0,2026_08_26_21_45_21
-20216804,2026-09-14,2026-09-18,Latornell A1 - Compressor Station Maintenance," No impact to FT-D anticipated; Empress/McNeill Borders; Segments 15, 16, 17, 18, 19, 20, partial 21, 23, partial 28 ",EGAT,EGAT,3,6.9,388.5,66,159000.0,148000.0,2026_08_26_21_45_21
-20609716,2026-09-14,2026-09-14,Strome Holberg - Meter Station Maintenance,Strome Holberg,LCLR,LCLR,8,,,22,,0.0,2026_08_26_21_45_21
-20609711,2026-09-16,2026-09-16,Brainard Lake - Meter Station Maintenance,Brainard Lake,LCLR,LCLR,8,,,22,,0.0,2026_08_26_21_45_21
-20641790,2026-09-16,2026-09-16,Eta Lake - Meter Station Maintenance,Eta Lake,LCLR,LCLR,8,,,22,,0.0,2026_08_26_21_45_21
-20619258,2026-09-16,2026-09-16,Hays - Meter Station Maintenance,Hays,LCLR,LCLR,8,,,22,,0.0,2026_08_26_21_45_21
-20608768,2026-09-17,2026-09-17,Kersey #2 - Meter Station Maintenance,Kersey #2,LCLR,LCLR,8,,,22,,0.0,2026_08_26_21_45_21
--1789797610,2026-09-19,2026-09-19,,,RPTA,RPTA,10,,,22,,,2026_08_26_21_45_21
-20216822,2026-09-20,2026-09-26,Saturn - Compressor Station Maintenance, Potential impact to FT-R; Partial Segment 4 (Upstream of Groundbirch),LCLR,LCLR,8,,,22,,122000.0,2026_08_26_21_45_21
--1790488810,2026-09-20,2026-09-27,,,RPTA,RPTA,10,,,22,,,2026_08_26_21_45_21
-20573247,2026-09-21,2026-09-26,NPS 10 Etzikom Lateral - Pipeline Modifications,Murray Lake,LCLR,LCLR,8,,,22,,0.0,2026_08_26_21_45_21
-20528636,2026-09-21,2026-09-21,Calling Lake West - Meter Station Maintenance,Calling Lake West,LCLR,LCLR,8,,,5,,0.0,2026_08_26_21_45_21
-20685900,2026-09-22,2026-09-22,Medicine Hat NW - Meter Station Maintenance,Medicine Hat NW,LCLR,LCLR,8,,,22,,0.0,2026_08_26_21_45_21
-20218699,2026-09-22,2026-09-25,Otter Lake - Compressor Station Maintenance," No impact to FT-D anticipated; Empress/McNeill Borders; Segments 6, 10, 11, 13, 14, 15, 16, 17, 18, 19, 20, partial 21, 23, 24, partial 28",EGAT,EGAT,3,6.9,388.5,110,159000.0,148000.0,2026_08_26_21_45_21
-20726307,2026-09-23,2026-09-23,Whitesands Sales - Meter Station Maintenance,Whitesands Sales,LCLD,LCLD,9,,,3,,0.0,2026_08_26_21_45_21
-20691964,2026-09-23,2026-09-23,Aeco C Sales - Meter Station Maintenance,Aeco C Sales,LCLD,LCLD,9,,,21,,0.0,2026_08_26_21_45_21
-20691966,2026-09-23,2026-09-23,Aeco C - Meter Station Maintenance,Aeco C,LCLR,LCLR,8,,,22,,0.0,2026_08_26_21_45_21
-20561684,2026-09-23,2026-09-23,Butte - Meter Station Maintenance,Butte,LCLR,LCLR,8,,,4,,0.0,2026_08_26_21_45_21
--1790748011,2026-09-27,2026-09-30,,,DPTA,DPTA,11,,,22,,,2026_08_26_21_45_21
-20216786,2026-09-28,2026-10-02,Meikle River C - Compressor Station Maintenance," No impact to FT-D anticipated; Empress/McNeill Borders; Segments 6, 10, 11, 13, 14, 15, 16, 17, 18, 19, 20, partial 21, 23, 24, partial 28 ",EGAT,EGAT,3,6.9,388.5,154,159000.0,148000.0,2026_08_26_21_45_21
--1791007210,2026-09-28,2026-10-03,,,RPTA,RPTA,10,,,22,,,2026_08_26_21_45_21
-20654370,2026-09-29,2026-10-10,NPS 18 Waterton Lateral Loop - Pipeline Maintenance,Waterton Sales,LCLD,LCLD,9,,,22,,0.0,2026_08_26_21_45_21
-20137207,2026-09-29,2026-10-08,NPS 8 Kessler Lateral - Pipeline Maintenance, Provost Kessler,LCLR,LCLR,8,,,22,,0.0,2026_08_26_21_45_21
-20726425,2026-09-29,2026-09-29,Foulwater Creek - Meter Station Maintenance,Foulwater Creek,LCLR,LCLR,8,,,2,,0.0,2026_08_26_21_45_21
--1790834411,2026-10-01,2026-10-01,,,DPTA,DPTA,11,,,22,,,2026_08_26_21_45_21
--1791093611,2026-10-02,2026-10-04,,,DPTA,DPTA,11,,,22,,,2026_08_26_21_45_21
--1791266410,2026-10-04,2026-10-06,,,RPTA,RPTA,10,,,22,,,2026_08_26_21_45_21
-20219161,2026-10-04,2026-10-05,Swartz Creek A2 - Compressor Station Maintenance," No impact to FT-D anticipated; Empress/McNeill Borders; Segments 15, 16, 17, 18, 19, 20, partial 21, 23, partial 28",EGAT,EGAT,3,7.5,423.8,66,160000.0,148000.0,2026_08_26_21_45_21
--1791180011,2026-10-05,2026-10-05,,,DPTA,DPTA,11,,,22,,,2026_08_26_21_45_21
-20528638,2026-10-06,2026-10-06,Smith - Meter Station Maintenance,Smith,LCLR,LCLR,8,,,5,,0.0,2026_08_26_21_45_21
--1791266411,2026-10-06,2026-10-06,,,DPTA,DPTA,11,,,22,,,2026_08_26_21_45_21
--1792044011,2026-10-07,2026-10-15,,,DPTA,DPTA,11,,,22,,,2026_08_26_21_45_21
-20218711,2026-10-07,2026-10-08,Meikle River D5 - Compressor Station Maintenance," Potential impact to FT-D; Segments 10, 11, and 14",OSDA,OSDA,7,12.2,423.8,110,98000.0,86000.0,2026_08_26_21_45_21
--1791784810,2026-10-09,2026-10-12,,,RPTA,RPTA,10,,,8,,,2026_08_26_21_45_21
--1792044010,2026-10-13,2026-10-15,,,RPTA,RPTA,10,,,22,,,2026_08_26_21_45_21
-20725121,2026-10-13,2026-10-13,Carson Creek - Meter Station Maintenance,Carson Creek,LCLR,LCLR,8,,,8,,0.0,2026_08_26_21_45_21
-20216753,2026-10-13,2026-10-26,Gold Creek B3 - Compressor Station Maintenance," No impact to FT-D anticipated; Empress/McNeill Borders; Segments 15, 16, 17, 18, 19, 20, partial 21, 23, partial 28 ",EGAT,EGAT,3,7.5,423.8,66,160000.0,148000.0,2026_08_26_21_45_21
-20217018,2026-10-13,2026-10-23,Nordegg B - Compressor Station Maintenance," No impact to FT-D anticipated; Empress/McNeill Borders; Segments 15, 16, 17, 18, 19, 20, partial 21, 23, partial 28",EGAT,EGAT,3,6.9,388.5,66,160000.0,149000.0,2026_08_26_21_45_21
-20216862,2026-10-14,2026-10-20,Turner Valley A1 & A2 - Compressor Station Maintenance, Potential Impact to FT-D; Alberta/BC and Alberta/Montana Borders; Segments 22 and partial 21,WGAT,WGAT,2,15.6,494.4,22,90000.0,76000.0,2026_08_26_21_45_21
-20614447,2026-10-14,2026-10-30,NPS 8 Mitsue Lateral - Pipeline Modifications,"Mitsue, Nipisi",LCLR,LCLR,8,,,39,,100.0,2026_08_26_21_45_21
--1792648811,2026-10-16,2026-10-22,,,DPTA,DPTA,11,,,22,,,2026_08_26_21_45_21
-20216880,2026-10-24,2026-10-30,Beiseker B3 - Compressor Station Maintenance," No impact to FT-D anticipated; Empress/McNeill Borders; Segments 15, 16, 17, 18, 19, 20, 23, partial 21, and partial 28",EGAT,EGAT,3,3.7,211.9,22,160000.0,154000.0,2026_08_26_21_45_21
-20170321,2026-10-26,2026-10-29,NPS 12 Bigstone Lateral - Pipeline Maintenance,Grizzly,LCLR,LCLR,8,,,44,,0.0,2026_08_26_21_45_21
-20216913,2026-11-01,2026-11-07,Jenner - Compressor Station Maintenance," No impact to FT-D anticipated; Empress/McNeill Borders; Segments 15, 16, 17, 18, 19, 20, 23, partial 21, and partial 28",EGAT,EGAT,3,4.3,247.2,22,161000.0,154000.0,2026_08_26_21_45_21
-20171456,2026-11-04,2026-11-06,NPS 42 Foothills Pipeline Zone 6 - Pipeline Maintenance," Potential impact to FT-D; Empress/McNeill Borders; Segments 15, 16, 17, 18, 19, 20, 23, partial 21, and partial 28 ",EGAT,EGAT,3,16.1,918.2,44,161000.0,135000.0,2026_08_26_21_45_21
+-1789711210,2026-09-13,2026-09-18,,,RPTA,RPTA,10,,,8,,,2026_08_28_21_40_44
+19731861,2026-09-13,2026-10-08,NPS 36 Grande Prairie Mainline - Pipeline Maintenance,Gold Creek South Summary,LCLR,LCLR,8,,,24,,3788.0,2026_08_28_21_40_44
+20609716,2026-09-14,2026-09-14,Strome Holberg - Meter Station Maintenance,Strome Holberg,LCLR,LCLR,8,,,24,,0.0,2026_08_28_21_40_44
+20216804,2026-09-14,2026-09-18,Latornell A1 - Compressor Station Maintenance," No impact to FT-D anticipated; Empress/McNeill Borders; Segments 15, 16, 17, 18, 19, 20, partial 21, 23, partial 28 ",EGAT,EGAT,3,6.9,388.5,72,159000.0,148000.0,2026_08_28_21_40_44
+20216997,2026-09-14,2026-09-17,Elko - Compressor Station Maintenance, Potential Impact to FT; Alberta/BC Border; Foothills BC,FHBC,FHZ8,4,19.1,600.3,24,89000.0,72000.0,2026_08_28_21_40_44
+20619258,2026-09-16,2026-09-16,Hays - Meter Station Maintenance,Hays,LCLR,LCLR,8,,,24,,0.0,2026_08_28_21_40_44
+20722054,2026-09-16,2026-09-16,Horizon Sales - Meter Station Maintenance,Horizon Sales,LCLD,LCLD,9,,,2,,0.0,2026_08_28_21_40_44
+20641790,2026-09-16,2026-09-16,Eta Lake - Meter Station Maintenance,Eta Lake,LCLR,LCLR,8,,,24,,0.0,2026_08_28_21_40_44
+20609711,2026-09-16,2026-09-16,Brainard Lake - Meter Station Maintenance,Brainard Lake,LCLR,LCLR,8,,,24,,0.0,2026_08_28_21_40_44
+-1789711211,2026-09-16,2026-09-18,,,DPTA,DPTA,11,,,2,,,2026_08_28_21_40_44
+20608768,2026-09-17,2026-09-17,Kersey #2 - Meter Station Maintenance,Kersey #2,LCLR,LCLR,8,,,24,,0.0,2026_08_28_21_40_44
+-1789797610,2026-09-19,2026-09-19,,,RPTA,RPTA,10,,,24,,,2026_08_28_21_40_44
+-1790402411,2026-09-19,2026-09-26,,,DPTA,DPTA,11,,,24,,,2026_08_28_21_40_44
+20216822,2026-09-20,2026-09-26,Saturn - Compressor Station Maintenance, Potential impact to FT-R; Partial Segment 4 (Upstream of Groundbirch),LCLR,LCLR,8,,,24,,122000.0,2026_08_28_21_40_44
+-1790488810,2026-09-20,2026-09-27,,,RPTA,RPTA,10,,,24,,,2026_08_28_21_40_44
+20528636,2026-09-21,2026-09-21,Calling Lake West - Meter Station Maintenance,Calling Lake West,LCLR,LCLR,8,,,7,,0.0,2026_08_28_21_40_44
+20573247,2026-09-21,2026-09-26,NPS 10 Etzikom Lateral - Pipeline Modifications,Murray Lake,LCLR,LCLR,8,,,24,,0.0,2026_08_28_21_40_44
+20218699,2026-09-22,2026-09-25,Otter Lake - Compressor Station Maintenance," No impact to FT-D anticipated; Empress/McNeill Borders; Segments 6, 10, 11, 13, 14, 15, 16, 17, 18, 19, 20, partial 21, 23, 24, partial 28",EGAT,EGAT,3,6.9,388.5,120,159000.0,148000.0,2026_08_28_21_40_44
+20685900,2026-09-22,2026-09-22,Medicine Hat NW - Meter Station Maintenance,Medicine Hat NW,LCLR,LCLR,8,,,24,,0.0,2026_08_28_21_40_44
+20726307,2026-09-23,2026-09-23,Whitesands Sales - Meter Station Maintenance,Whitesands Sales,LCLD,LCLD,9,,,5,,0.0,2026_08_28_21_40_44
+20691964,2026-09-23,2026-09-23,Aeco C Sales - Meter Station Maintenance,Aeco C Sales,LCLD,LCLD,9,,,23,,0.0,2026_08_28_21_40_44
+20561684,2026-09-23,2026-09-23,Butte - Meter Station Maintenance,Butte,LCLR,LCLR,8,,,6,,0.0,2026_08_28_21_40_44
+20691966,2026-09-23,2026-09-23,Aeco C - Meter Station Maintenance,Aeco C,LCLR,LCLR,8,,,24,,0.0,2026_08_28_21_40_44
+-1790748011,2026-09-27,2026-09-30,,,DPTA,DPTA,11,,,24,,,2026_08_28_21_40_44
+-1791007210,2026-09-28,2026-10-03,,,RPTA,RPTA,10,,,24,,,2026_08_28_21_40_44
+20726425,2026-09-29,2026-09-29,Foulwater Creek - Meter Station Maintenance,Foulwater Creek,LCLR,LCLR,8,,,4,,0.0,2026_08_28_21_40_44
+20137207,2026-09-29,2026-10-08,NPS 8 Kessler Lateral - Pipeline Maintenance, Provost Kessler,LCLR,LCLR,8,,,24,,0.0,2026_08_28_21_40_44
+20654370,2026-09-29,2026-10-10,NPS 18 Waterton Lateral Loop - Pipeline Maintenance,Waterton Sales,LCLD,LCLD,9,,,24,,0.0,2026_08_28_21_40_44
+20216786,2026-10-01,2026-10-02,Meikle River C - Compressor Station Maintenance," Potential impact to FT-D; Segments 10, 11, and 14",OSDA,OSDA,7,10.2,353.1,168,98000.0,88000.0,2026_08_28_21_40_44
+-1790834411,2026-10-01,2026-10-01,,,DPTA,DPTA,11,,,24,,,2026_08_28_21_40_44
+-1791093611,2026-10-02,2026-10-04,,,DPTA,DPTA,11,,,24,,,2026_08_28_21_40_44
+20219161,2026-10-04,2026-10-05,Swartz Creek A2 - Compressor Station Maintenance," No impact to FT-D anticipated; Empress/McNeill Borders; Segments 15, 16, 17, 18, 19, 20, partial 21, 23, partial 28",EGAT,EGAT,3,7.5,423.8,72,160000.0,148000.0,2026_08_28_21_40_44
+-1791266410,2026-10-04,2026-10-06,,,RPTA,RPTA,10,,,24,,,2026_08_28_21_40_44
+-1791180011,2026-10-05,2026-10-05,,,DPTA,DPTA,11,,,24,,,2026_08_28_21_40_44
+-1791266411,2026-10-06,2026-10-06,,,DPTA,DPTA,11,,,24,,,2026_08_28_21_40_44
+20528638,2026-10-06,2026-10-06,Smith - Meter Station Maintenance,Smith,LCLR,LCLR,8,,,7,,0.0,2026_08_28_21_40_44
+-1792044011,2026-10-07,2026-10-15,,,DPTA,DPTA,11,,,24,,,2026_08_28_21_40_44
+20218711,2026-10-07,2026-10-08,Meikle River D5 - Compressor Station Maintenance," Potential impact to FT-D; Segments 10, 11, and 14",OSDA,OSDA,7,12.2,423.8,120,98000.0,86000.0,2026_08_28_21_40_44
+-1791784810,2026-10-09,2026-10-12,,,RPTA,RPTA,10,,,10,,,2026_08_28_21_40_44
+20725121,2026-10-13,2026-10-14,Carson Creek - Meter Station Maintenance,Carson Creek,LCLR,LCLR,8,,,10,,0.0,2026_08_28_21_40_44
+-1792044010,2026-10-13,2026-10-15,,,RPTA,RPTA,10,,,24,,,2026_08_28_21_40_44
+20216753,2026-10-13,2026-10-26,Gold Creek B3 - Compressor Station Maintenance," No impact to FT-D anticipated; Empress/McNeill Borders; Segments 15, 16, 17, 18, 19, 20, partial 21, 23, partial 28 ",EGAT,EGAT,3,7.5,423.8,72,160000.0,148000.0,2026_08_28_21_40_44
+20217018,2026-10-13,2026-10-23,Nordegg B - Compressor Station Maintenance," No impact to FT-D anticipated; Empress/McNeill Borders; Segments 15, 16, 17, 18, 19, 20, partial 21, 23, partial 28",EGAT,EGAT,3,6.9,388.5,72,160000.0,149000.0,2026_08_28_21_40_44
+20216862,2026-10-14,2026-10-20,Turner Valley A1 & A2 - Compressor Station Maintenance, Potential Impact to FT-D; Alberta/BC and Alberta/Montana Borders; Segments 22 and partial 21,WGAT,WGAT,2,15.6,494.4,24,90000.0,76000.0,2026_08_28_21_40_44
+20614447,2026-10-14,2026-10-30,NPS 8 Mitsue Lateral - Pipeline Modifications,"Mitsue, Nipisi",LCLR,LCLR,8,,,43,,100.0,2026_08_28_21_40_44
+-1792648811,2026-10-16,2026-10-22,,,DPTA,DPTA,11,,,24,,,2026_08_28_21_40_44
+20216880,2026-10-24,2026-10-30,Beiseker B3 - Compressor Station Maintenance," No impact to FT-D anticipated; Empress/McNeill Borders; Segments 15, 16, 17, 18, 19, 20, 23, partial 21, and partial 28",EGAT,EGAT,3,3.7,211.9,24,160000.0,154000.0,2026_08_28_21_40_44
+20170321,2026-10-26,2026-10-29,NPS 12 Bigstone Lateral - Pipeline Maintenance,Grizzly,LCLR,LCLR,8,,,48,,0.0,2026_08_28_21_40_44
+20216913,2026-11-01,2026-11-07,Jenner - Compressor Station Maintenance," No impact to FT-D anticipated; Empress/McNeill Borders; Segments 15, 16, 17, 18, 19, 20, 23, partial 21, and partial 28",EGAT,EGAT,3,4.3,247.2,24,161000.0,154000.0,2026_08_28_21_40_44
+20171456,2026-11-04,2026-11-06,NPS 42 Foothills Pipeline Zone 6 - Pipeline Maintenance," Potential impact to FT-D; Empress/McNeill Borders; Segments 15, 16, 17, 18, 19, 20, 23, partial 21, and partial 28 ",EGAT,EGAT,3,16.1,918.2,48,161000.0,135000.0,2026_08_28_21_40_44

@@ -63,7 +63,9 @@ Underneath, the three things that would change the read — activity recovering 
 
 Don't walk them through it. Have it open so that when someone asks "where's BC production?" you click the tab instead of hedging.
 
-Short answer: Petrinex publishes Alberta and Saskatchewan only — BC returns HTTP 400. BCER's Data Centre needs an account. So BC is measured on activity, not volumes. Frac activity leads production by months anyway, which is a feature here.
+Short answer: Petrinex publishes Alberta and Saskatchewan only — BC returns HTTP 400. That's why the app is built on frac activity. BCER *does* publish BC volumes as an open download (`iris.bcogc.ca/download/prod_csv.zip`), which I found late; it reconciles to 7.54 Bcf/d marketable against Peters' 7.5, and it's parsed in `prepare_bc_production.py` but not yet wired into these charts.
+
+Say it that way rather than "BC isn't available" — the honest version is stronger, and the reconciliation to within 0.5% of a sell-side number is worth volunteering.
 
 ---
 

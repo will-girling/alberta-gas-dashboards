@@ -14,8 +14,10 @@ ST37 and Petrinex volumetrics for Alberta, BCER frac records for BC.
 
 Two provinces, two different measurements
 -----------------------------------------
-Petrinex publishes Alberta and Saskatchewan; BC returns HTTP 400. BCER
-publishes frac records but not accessible production. So Alberta is
+Petrinex publishes Alberta and Saskatchewan; BC returns HTTP 400. BC
+volumes come from BCER's own open prod_csv.zip (see
+prepare_bc_production.py), but this app measures BC on completion
+activity, which leads production by months. So Alberta is
 measured on volumes and wells, BC on completion activity. Different
 metrics, same question — and the fact that two independent regulators
 and two unrelated measurements agree is the point, not a weakness.
@@ -561,16 +563,25 @@ with tab_notes:
 
 | | Alberta | British Columbia |
 |---|---|---|
-| Production | Petrinex volumetrics | not publicly accessible |
+| Production | Petrinex volumetrics | BCER `prod_csv.zip` (zone-level) |
 | Well location | AER ST37 | BCER `WELL_BOTTOM_HOLE_STATE_PT` |
 | Activity | first production month | BCER `HISTORIC_FRACTURING` |
 | Play attribution | geographic box | `OBJECTIVE_FORMATION` field |
 
 ### Known limits
 
-**BC production is missing.** Petrinex publishes Alberta and Saskatchewan
-only — every BC month returns HTTP 400. BCER's Data Centre requires an
-account. So BC is measured on activity, not volumes.
+**BC is measured on activity here, not volumes** — but production *is*
+available. Petrinex publishes Alberta and Saskatchewan only (every BC
+month returns HTTP 400), which is why this app was built on frac
+activity. BCER does publish monthly volumes as an open download,
+`iris.bcogc.ca/download/prod_csv.zip`, with no logon; I had wrongly
+concluded otherwise from the gated Legacy Well Lookup. That file is now
+parsed by `prepare_bc_production.py` and reconciles to 7.54 Bcf/d
+marketable against Peters' 7.5 for BC Montney. It is not yet wired into
+the charts on these tabs.
+
+Activity still leads production by months, so it remains the better
+early indicator for the question this app asks.
 
 **BC frac records are backfilled.** Despite the field name
 `OPS_EXPECTED_START_DATE`, no record carries a future date. The last two
