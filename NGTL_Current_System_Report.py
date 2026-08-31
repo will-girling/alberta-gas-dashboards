@@ -162,7 +162,19 @@ MARKER_BASELINE_MIN_DAYS = 10
 # on less. The bubble reports its observation count, and
 # baseline_coverage_days below surfaces the shortfall explicitly rather
 # than letting a label claim more history than exists.
-ALBERTA_BASELINE_WINDOW_DAYS = 14
+ALBERTA_BASELINE_WINDOW_DAYS = 30
+
+# The chart overlay deliberately does NOT follow the constant above.
+#
+# A rolling mean is only a useful reference line if the archive is
+# several times longer than its window; at 30 days of history a 30-day
+# rolling mean is just the all-time mean drawn flat, and it stays that
+# way until the archive passes 60 days. min_periods keeps it from
+# blanking, which makes the degeneration silent rather than obvious.
+#
+# The bubbles have the opposite need: they read a single point against
+# the widest defensible history, so they take the full 30 days.
+EXPLORER_MEAN_WINDOW_DAYS = 14
 
 # Half-hourly data gives ~48 observations/day; require a full day before
 # reporting a band.
@@ -3481,7 +3493,7 @@ def render_metric_explorer(
 
     with control_left:
         show_mean = st.checkbox(
-            f"Show {ALBERTA_BASELINE_WINDOW_DAYS}-day rolling mean",
+            f"Show {EXPLORER_MEAN_WINDOW_DAYS}-day rolling mean",
             value=len(chosen) == 1 and not stacked,
             key=f"explorer_mean_{key}",
             disabled=stacked,
@@ -3501,10 +3513,11 @@ def render_metric_explorer(
     left_values: list[float] = []
     right_values: list[float] = []
 
-    # Same window as the Alberta panel's baseline, so the explorer and
-    # the deviation bubbles answer the same question. Follows
-    # ALBERTA_BASELINE_WINDOW_DAYS, so widening the baseline widens this.
-    window = ALBERTA_BASELINE_WINDOW_DAYS * 48
+    # Held at 14 days while the archive is short — see the note on
+    # EXPLORER_MEAN_WINDOW_DAYS. This no longer matches the bubbles'
+    # 30-day baseline; that is intentional, and the checkbox label says
+    # which window it is so the two are not confused.
+    window = EXPLORER_MEAN_WINDOW_DAYS * 48
 
     for i, name in enumerate(chosen):
         column = labels[name]
@@ -3617,7 +3630,7 @@ def render_metric_explorer(
                         / 1000
                     ),
                     mode="lines",
-                    name=f"{name} · {ALBERTA_BASELINE_WINDOW_DAYS}d mean",
+                    name=f"{name} · {EXPLORER_MEAN_WINDOW_DAYS}d mean",
                     line=dict(color=colour, width=1.2, dash="dot"),
                     yaxis=axis,
                     showlegend=len(chosen) == 1,
