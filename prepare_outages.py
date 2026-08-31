@@ -145,8 +145,15 @@ SEVERITY_MODERATE_PCT = 4.0
 VOLUME_SEVERE_MMCFD = 100.0
 VOLUME_MODERATE_MMCFD = 25.0
 
+# Below this, an outage is real but too small to be worth a colour.
+# Two thirds of the meter-station outages sit under 3 MMcf/d - Whitesands
+# Sales is 0.18 - and lumping them into "minor" put twenty-odd warning
+# pins on the map for events that move nothing. "Minor" should mean
+# measured and small, not measured and irrelevant.
+VOLUME_NEGLIGIBLE_MMCFD = 5.0
+
 # Shared ordering so the percent and volume grades can be compared.
-SEVERITY_ORDER = {"minor": 1, "moderate": 2, "severe": 3}
+SEVERITY_ORDER = {"negligible": 0, "minor": 1, "moderate": 2, "severe": 3}
 
 # A facility's own observed history is only a usable stand-in for its
 # normal capability once it has been seen at more than one capability.
@@ -519,7 +526,9 @@ def main() -> None:
             return "severe"
         if mmcfd >= VOLUME_MODERATE_MMCFD:
             return "moderate"
-        return "minor"
+        if mmcfd >= VOLUME_NEGLIGIBLE_MMCFD:
+            return "minor"
+        return "negligible"
 
     volume_grade = df["volume_at_risk_mmcfd"].map(grade_volume)
 
@@ -532,7 +541,7 @@ def main() -> None:
     # Where volume is unknown the percent grade stands alone rather than
     # being suppressed - absence of a typicalFlow is not evidence of a
     # small outage.
-    graded = df["severity"].isin(("severe", "moderate", "minor"))
+    graded = df["severity"].isin(("severe", "moderate", "minor", "negligible"))
     known = volume_grade.ne("unknown") & graded
     lower = np.where(
         df["severity"].map(SEVERITY_ORDER).fillna(0)

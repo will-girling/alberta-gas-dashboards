@@ -127,8 +127,15 @@ OUTAGE_SEVERITY = {
                  "label": "Severe", "detail": "10%+ below normal capability"},
     "moderate": {"colour": [255, 158, 44, 240],  "hex": "#ff9e2c",
                  "label": "Moderate", "detail": "4-10% below"},
-    "minor":    {"colour": [222, 205, 128, 220], "hex": "#decd80",
-                 "label": "Minor", "detail": "under 4% below"},
+    # Muted slate rather than the old pale yellow. Yellow reads as
+    # caution, and on a map where most outages are small that produced a
+    # field of warning pins for events moving a few MMcf/d.
+    "minor":    {"colour": [150, 170, 190, 205], "hex": "#96aabe",
+                 "label": "Minor", "detail": "5-25 MMcf/d at risk"},
+    # Real, measured, and too small to matter: under 5 MMcf/d. Rendered
+    # faint so it recedes instead of competing.
+    "negligible": {"colour": [104, 114, 128, 150], "hex": "#687280",
+                   "label": "Negligible", "detail": "under 5 MMcf/d at risk"},
     # Third-party plant turnarounds, from TC's DPTA and RPTA areas.
     # These affect receipts into the system rather than pipeline
     # capability, and TC publishes no capability figure for them, so
@@ -143,7 +150,7 @@ OUTAGE_SEVERITY = {
 }
 # Turnarounds rank below the graded levels: where a station has both,
 # the measured derate is the more informative label.
-SEVERITY_RANK = {"unknown": 0, "turnaround": 0,
+SEVERITY_RANK = {"unknown": 0, "turnaround": 0, "negligible": 0,
                  "minor": 1, "moderate": 2, "severe": 3}
 
 # Restriction wording that indicates firm service may be affected.
