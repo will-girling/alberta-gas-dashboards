@@ -153,6 +153,17 @@ OUTAGE_SEVERITY = {
 SEVERITY_RANK = {"unknown": 0, "turnaround": 0, "negligible": 0,
                  "minor": 1, "moderate": 2, "severe": 3}
 
+# Outage facility names are matched to station names by substring, which
+# is only safe once the key is long enough to be distinctive.
+#
+# This was the bug behind every "the whole map is one colour" report. The
+# outage named "AP" had its unit suffix stripped to the single letter
+# "A", and "A" is a substring of 49 of the 74 station names - so one
+# small lateral outage recoloured two thirds of the system, in whatever
+# grade it happened to carry. The colour changed every time the grading
+# changed; the cause never did.
+OUTAGE_KEY_MIN_CHARS = 4
+
 # Restriction wording that indicates firm service may be affected.
 OUTAGE_IMPACT_MARKER = "potential"
 
@@ -1695,8 +1706,22 @@ if compressors is not None and not compressors.empty:
     # severity colour; everything else stays neutral.
     outage_keys = {}
     for row in active_outages.itertuples():
-        key = re.sub(r"[^A-Z]", "", str(row.facility).upper())
-        key = re.sub(r"(?:[A-Z]\d*|NO\d+[A-Z]?)$", "", key) or key
+        facility = row.facility
+        # A null facility stringifies to "nan" -> "NAN" -> key "NA",
+        # which then substring-matches real stations. The turnaround
+        # records have no facility at all, so guard before building.
+        if facility is None or pd.isna(facility):
+            continue
+
+        key = re.sub(r"[^A-Z]", "", str(facility).upper())
+        # Only strip a unit suffix if what remains is still specific
+        # enough to match on. "AP" would otherwise reduce to "A".
+        stripped = re.sub(r"(?:[A-Z]\d*|NO\d+[A-Z]?)$", "", key)
+        if len(stripped) >= OUTAGE_KEY_MIN_CHARS:
+            key = stripped
+        if len(key) < OUTAGE_KEY_MIN_CHARS:
+            continue
+
         rank = SEVERITY_RANK.get(str(row.severity), 0)
         if rank >= SEVERITY_RANK.get(outage_keys.get(key, "unknown"), 0):
             outage_keys[key] = str(row.severity)
