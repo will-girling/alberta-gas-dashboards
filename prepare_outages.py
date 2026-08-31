@@ -131,6 +131,23 @@ AREA_CAPABILITY_FILE = PROJECT_ROOT / "processed" / "ngtl_area_capabilities.csv"
 SEVERITY_SEVERE_PCT = 10.0
 SEVERITY_MODERATE_PCT = 4.0
 
+# Percent derate on its own is scale-blind, and on a map that is the
+# difference between a finding and a false alarm. A meter station taken
+# fully out of service is a 100% derate whether it normally flows 205
+# MMcf/d (Aeco C Sales) or 0.2 (Whitesands Sales) - and both were
+# rendering as the same maximum red.
+#
+# TC publishes typicalFlow alongside capability, so the volume actually
+# at risk is available: typical flow less capability during the outage.
+# Against an NGTL system moving roughly 15,000 MMcf/d, 100 MMcf/d is a
+# little under a percent and worth a look; 25 is marginal; below that it
+# is a local event that should not compete for attention.
+VOLUME_SEVERE_MMCFD = 100.0
+VOLUME_MODERATE_MMCFD = 25.0
+
+# Shared ordering so the percent and volume grades can be compared.
+SEVERITY_ORDER = {"minor": 1, "moderate": 2, "severe": 3}
+
 # A facility's own observed history is only a usable stand-in for its
 # normal capability once it has been seen at more than one capability.
 # Seen once, its max is its only reading, so the implied derate is 0% by
@@ -212,6 +229,7 @@ def load_latest_api_publication() -> pd.DataFrame | None:
 
     renamed = {
         "outageId": "Outage Id", "id": "UID", "flowCapability": "Capability",
+        "typicalFlow": "Typical Flow",
         "impact": "Type of Restriction", "description": "Description",
         "startDateTime": "Start", "endDateTime": "End",
         "areaForStatedCapability": "Area for Stated Capability",
@@ -233,6 +251,24 @@ def load_latest_api_publication() -> pd.DataFrame | None:
 
     print(f"  using API publication {newest.name}: {len(frame)} rows")
     return frame
+
+
+def parse_typical_flow(values) -> pd.Series:
+    """Typical flow in e3m3/d, from either source.
+
+    The field is a string and is often a RANGE - the East Gate reports
+    "340000-385000" - so a plain to_numeric would coerce the busiest
+    areas on the system to NaN and quietly exempt them from any
+    volume-based grading. Ranges take their midpoint.
+    """
+    series = pd.Series(values).astype(str).str.strip()
+
+    lo = series.str.extract(r"^(-?[\d.]+)", expand=False)
+    hi = series.str.extract(r"-\s*([\d.]+)\s*$", expand=False)
+    lo = pd.to_numeric(lo, errors="coerce")
+    hi = pd.to_numeric(hi, errors="coerce")
+
+    return np.where(hi.notna(), (lo + hi) / 2, lo)
 
 
 def load_exports() -> pd.DataFrame:
@@ -286,6 +322,9 @@ def main() -> None:
         "area": raw.get("Area for Stated Capability", pd.NA),
         "description": raw["Description"].astype(str).str.strip(),
         "source_file": raw["source_file"],
+        "typical_flow_e3m3d": parse_typical_flow(
+            raw.get("Typical Flow", pd.NA)
+        ),
         # Absent from the CSV exports, which carry no turnaround flag;
         # those rows default to False and grade normally.
         "plant_turnaround": (
@@ -465,8 +504,49 @@ def main() -> None:
     df.loc[full, "derate_pct"] = 100.0
     df.loc[full, "severity"] = "severe"
     df.loc[full, "severity_basis"] = "zero_capability"
-    print(f"  {int(full.sum())} rows graded severe on a stated zero "
-          "capability (full outage, no base required)")
+    print(f"  {int(full.sum())} rows fully out on a stated zero capability")
+
+    # --- second dimension: how much gas is actually at risk ----------
+    df["typical_flow_mmcfd"] = df["typical_flow_e3m3d"] * E3M3_TO_MMCFD
+    df["volume_at_risk_mmcfd"] = (
+        (df["typical_flow_mmcfd"] - df["capability_mmcfd"]).clip(lower=0)
+    )
+
+    def grade_volume(mmcfd: float) -> str:
+        if pd.isna(mmcfd):
+            return "unknown"
+        if mmcfd >= VOLUME_SEVERE_MMCFD:
+            return "severe"
+        if mmcfd >= VOLUME_MODERATE_MMCFD:
+            return "moderate"
+        return "minor"
+
+    volume_grade = df["volume_at_risk_mmcfd"].map(grade_volume)
+
+    # An outage is only as serious as its weaker dimension. A full
+    # outage of a trivial meter station is a large fraction of nothing;
+    # a 2% derate of the East Gate is a small fraction of a great deal.
+    # Taking the lower of the two grades demands both before it will
+    # show red, which is what makes the colour mean something.
+    #
+    # Where volume is unknown the percent grade stands alone rather than
+    # being suppressed - absence of a typicalFlow is not evidence of a
+    # small outage.
+    graded = df["severity"].isin(("severe", "moderate", "minor"))
+    known = volume_grade.ne("unknown") & graded
+    lower = np.where(
+        df["severity"].map(SEVERITY_ORDER).fillna(0)
+        <= volume_grade.map(SEVERITY_ORDER).fillna(0),
+        df["severity"], volume_grade,
+    )
+    combined = pd.Series(lower, index=df.index)
+    changed = known & combined.ne(df["severity"])
+    df["severity"] = np.where(known, combined, df["severity"])
+    df.loc[known, "severity_basis"] = (
+        df.loc[known, "severity_basis"].astype(str) + "+volume"
+    )
+    print(f"  volume at risk known on {int(known.sum())} rows, "
+          f"{int(changed.sum())} regraded by it")
 
     # Expand each outage to one row per affected gas day so the dashboard
     # can select by day without interval logic.
