@@ -1863,7 +1863,7 @@ with bc_control_col:
 with station_control_col1:
     show_compressors = st.checkbox(
         "Show compressor stations",
-        value=True,
+        value=False,
         disabled=compressors is None,
         help=(
             "Operating NGTL compressor stations from the AER installation "
